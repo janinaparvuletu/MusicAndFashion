@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.top-bar {
+    display: flex;
+    position: relative;
+    height: 40vh;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-image: url('background_top_bar.jpg');
+    background-position: center;
+    filter: blur(5px);
+    z-index: 1;
+}
+.welcome {
+    font-size: 3rem;
+    color: white;
+    z-index: 2;
+    max-width: 90vw;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+
+@keyframes typingEffect {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}

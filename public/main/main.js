@@ -226,4 +226,5 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("theme", mode);
     });
   });
+
   

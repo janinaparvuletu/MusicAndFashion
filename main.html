@@ -8,36 +8,79 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="darklight.css">
         <title>M&F</title>
+
     </head>
     <body>
         <div class="top-bar">
-            <div class="background-blur"></div>
-        <div class="welcome"></div>
-            <div class="profile-popup"></div>
-        
-        </div>
-       
-        <main class="content">
-            <div class="album" onclick="movevinyl(1)">
-                <div class="vinyl" id="1">
-                    <div class="print"></div>
-                </div>
-                <div class="cover" style="background-image: url('Nane.jpg');"></div>
+            <div class="welcome-wrapper">
+                <div class="welcome"></div>
             </div>
             
-        </main>
+            <div class="profile" onclick="profilepopup()"></div>
+
+        </div>
+       
+            <div class="album-container">
+                <div class="album" onclick="movevinyl(1)">
+                    <div class="vinyl" id="1">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/Nane.jpg');"></div>
+                </div>
+                <div class="album" onclick="movevinyl(2)">
+                    <div class="vinyl" id="2">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover2.jpg');"></div>
+                </div>
+                <div class="album" onclick="movevinyl(3)">
+                    <div class="vinyl" id="3">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover3.jpg');"></div>
+                </div>
+                <div class="album" onclick="movevinyl(4)">
+                    <div class="vinyl" id="4">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover4.jpg');"></div>
+                </div>
+                <div class="album" onclick="movevinyl(5)">
+                    <div class="vinyl" id="5">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover5.jpg');"></div>
+                </div>
+            </div>
         
-        <script src="main.js"></script>
+
+            <div class="profile-popup-overlay" id="profile-popup">
+                <div class="popup-card">
+                  <button class="close-btn" onclick="closePopup()">×</button>
+                  <img class="popup-avatar" src="photos/profile.jpeg" alt="Profile picture">
+                  <div class="popup-info">
+                    <h3>Guest</h3>
+                    <p>guest@email.com</p>
+                    <button class="logout-btn">Logout</button>
+                  </div>
+                </div>
+              </div>
+                 
+            
+            <button id="theme-toggle">Switch to Dark Mode</button>        
 
     </body>
     <footer id="footer">
-        <div class="background-blur"></div>
+
         <div class="footer-content">
             <span onclick="rediraboutus()"> AboutUs</span>
             <span> | </span>
             <span onclick="redircontact()"> Contact </span>
         </div>
+        <script src="main.js"></script>
+
     </footer>
     
       

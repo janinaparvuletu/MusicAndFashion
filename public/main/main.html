@@ -8,11 +8,64 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        <link rel="stylesheet" href="main.css">
+        <link rel="stylesheet" href="main/main.css">
+        <script src="main/main.js"></script>
+        <script src="/cart.js"></script>
         <title>M&F</title>
     </head>
     <body>
-        
+        <section id="welcome-screen">
+            <video autoplay muted loop id="bg-video">
+                <source src="/photos/welcome_video.mp4" type="video/mp4">
+                Your browser does not support HTML5 video.
+              </video>
+        <div class="background background0"></div>
+    <div class="background background1"></div>
+    <div class="background background2"></div>
+    <div class="background background3"></div>
+    <div class="background background4"></div>
+    <div class="background background5"></div>
+    <div class="background background6"></div>
+    <div class="background background7"></div>
+    <div class="criterion">
+        <div class="text-container">
+            <!-- Line 1: "Welcome to" -->
+            <div class="text-line">
+              <span class="text text0">W</span>
+              <span class="text text1">e</span>
+              <span class="text text2">l</span>
+              <span class="text text3">c</span>
+              <span class="text text4">o</span>
+              <span class="text text5">m</span>
+              <span class="text text6">e</span>
+              <span class="text text-space">&nbsp;</span>
+              <span class="text text7">t</span>
+              <span class="text text8">o</span>
+            </div>
+          
+            <!-- Line 2: "CultureDrop" -->
+            <div class="text-line">
+              <span class="text text9">C</span>
+              <span class="text text10">u</span>
+              <span class="text text11">l</span>
+              <span class="text text12">t</span>
+              <span class="text text13">u</span>
+              <span class="text text14">r</span>
+              <span class="text text15">e</span>
+              <span class="text text16">D</span>
+              <span class="text text17">r</span>
+              <span class="text text18">o</span>
+              <span class="text text19">p</span>
+            </div>
+          </div>
+          
+      </div>
+      
+    
+    </section>
+
+    <section id="main-site">
+      
         <div class="top-bar">
            
             <div class="top-buttons">
@@ -87,8 +140,8 @@
                     </div>
                     <div class="cover" style="background-image: url('/photos/cover8.jpg');"></div>
                     <div class="denumire-album">
-                    <p> De-ale Mele II </p>
-                </div>
+                      <p> De-ale Mele II </p>
+                    </div>
                 </div>
                 <div class="album" onclick="movevinyl(8)">
                     <div class="vinyl" id="8">
@@ -118,8 +171,10 @@
                         <p> b0@b3 </p>
                     </div>
                 </div>
-                
+            <!--popup-uri discuri-->
             </div>
+
+
             <div class="album-popup" id="popup-1">
                 <h2>Plecat de acasă</h2>
                 <p>Primul album lansat de Nane în 2010. Atmosferă nostalgic-urbană.</p>
@@ -159,10 +214,16 @@
                 <h2>TRAUME ȘI COȘMARURI</h2>
                 <p>Un album întunecat și visceral, care explorează lupta interioară și traumele nevindecate.</p>
               </div>
-              
+            
               <div class="album-popup" id="popup-9">
                 <h2>Avram</h2>
-                <p>O dedicație emoțională, probabil cu referințe personale profunde. Emoție pură.</p>
+                <p>Albumul conține mai multe piese:</p>
+              
+                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/nane-bmv-video-oficial_gkHb1L7i.mp3', 9)">BMW</button>
+                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/am-putea-fi-feat-alduts-sherdley_fhjR7urw.mp3', 9)">Am putea fi</button>
+                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/spune-mi_J1giaM9M.mp3', 9)">Spune-mi</button>
+                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/lvl-up_mhuyrQB9.mp3', 9)">LVL-UP</button>
+                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/tututu_s5i8oCKI.mp3', 9)">TUTUTU</button>
               </div>
               
               <div class="album-popup" id="popup-10">
@@ -174,7 +235,7 @@
 
               <div class="profile-popup-overlay" id="profile-popup">
                 <div class="popup-card">
-                  <button class="close-btn" onclick="closePopup()">×</button>
+                  <button class="close-btn-profile" onclick="closePopup()">×</button>
                   
                   <img class="popup-avatar" src="/photos/profile.jpeg" alt="Profile picture">
                   
@@ -193,20 +254,35 @@
                   <button class="sign-up-btn">Sign Up</button>
                 </div>
               </div>
-              
+
+              <div class="cart-container">
+                <button class="cart-btn" onclick="toggleCart()">
+                    Cart (<span id="cart-count">0</span> items)
+                </button>
+            </div>
+            
+            <div class="cart-modal" id="cart-modal">
+              <div class="cart-content">
+                <h3>Your Cart</h3>
+                <ul id="cart-items"></ul>
+                <p id="cart-total">Total: $0.00</p>
+                <button class="close-btn" onclick="toggleCart()">Close</button>
+              </div>
+            </div>
+            
                  
               <div class="footer-spacer"></div>
-
-
+    </section>
+    <audio id="dynamic-player"></audio>
+    <script src="/cart.js"></script>
     </body>
     <footer id="footer">
 
         <div class="footer-content">
-            <span onclick="rediraboutus()" style="cursor: pointer;color: black; "> AboutUs</span>
-            <span style="color: black;"> | </span>
-            <span onclick="redircontact()" style="cursor: pointer; color: black;"> Contact </span>
+            <span onclick="rediraboutus()" class="about-contact"> AboutUs</span>
+            <span class="about-contact"> | </span>
+            <span onclick="redircontact()" class="about-contact"> Contact </span>
         </div>
-        <script src="main.js"></script>
 
     </footer>
     

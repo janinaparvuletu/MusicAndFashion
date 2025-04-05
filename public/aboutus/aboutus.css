@@ -25,12 +25,12 @@
 
 /* Team Member Section */
 .team-members {
-  display: flex; /* Use flexbox to display the images in a row */
-  justify-content: space-around; /* Space the images evenly */
-  align-items: center; /* Vertically center the items */
-  gap: 20px; /* Add space between the team members */
-  flex-wrap: wrap; /* Allow the items to wrap to the next line if needed (for responsiveness) */
-  margin-top: 20px; /* Add some space above the images */
+  display: flex; 
+  justify-content: space-around; 
+  align-items: center; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+  margin-top: 20px; 
 }
 
 /* Image styling for the team members */

@@ -7,15 +7,15 @@
 
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: #b43620   ;
+    color: #927974;
     line-height: 1.6;
     padding: 0;
     margin: 0;
 }
 
 h1, h2, h3 {
-    color: #2c3e50;
+    color: black;
 }
 
 a {
@@ -31,7 +31,7 @@ button {
 
 /* Header */
 header {
-    background-color: #34495e;
+    background-image: url('/photos/background_top_bar.jpg');
     color: white;
     padding: 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -405,26 +405,7 @@ h1, h2, h3 {
     font-size: 16px;
 }
 
-/* Quantity Adjustment Buttons */
-.quantity-btn {
-    background-color: #27ae60;
-    color: white;
-    padding: 5px 10px;
-    font-size: 18px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    margin: 0 5px;
-    transition: background-color 0.3s ease;
-}
 
-.quantity-btn:hover {
-    background-color: #2ecc71;
-}
-
-.quantity-btn:active {
-    background-color: #1e8449;
-}
 
 /* Product Section */
 .products {
@@ -464,7 +445,7 @@ h1, h2, h3 {
 
 /* Footer */
 footer {
-    background-color: #34495e;
+    background-image: url('/photos/background_top_bar.jpg');
     color: white;
     text-align: center;
     padding: 20px;

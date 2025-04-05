@@ -38,9 +38,16 @@ const products = [
 // Add product to cart
 function addToCart(productId) {
     const product = products.find(item => item.id === productId);
-    cart.push(product);
-    updateCartCount();
+    if (product) {
+        addToCartGood({
+            id: product.id,
+            name: product.name,
+            price: product.price
+        });
+    }
 }
+
+
 function rediraboutus()
 {   
     window.location.href="/aboutus";
@@ -50,7 +57,7 @@ function redircontact()
     window.location.href="/contact";
 }
 // Update cart count in the header
-function updateCartCount() {
+function updateCartDisplay() {
     const cartCount = document.getElementById('cart-count');
     cartCount.textContent = cart.length;
 }
@@ -110,6 +117,7 @@ function movevinyl(id) {
         album.classList.remove('active-vinyl');  // ✨ eliminăm transformările vechi
 
     });
+
     // Pune discul în centru și pornește animația
     clicked.style.order = '-1';
     vinyl.style.left = '50%';
@@ -161,6 +169,30 @@ function closeAlbumPopup(id) {
     }
 }
 
+
+function playTrack(src, vinylId) {
+    const audio = document.getElementById('dynamic-player');
+    const vinyl = document.getElementById(`${vinylId}`);
+
+    if (!audio || !vinyl) {
+        console.error('Audio sau vinil lipsă!');
+        return;
+    }
+
+    audio.pause(); // oprim orice redare anterioară
+    audio.src = src;
+    audio.currentTime = 0;
+    audio.volume = 1.0;
+
+    audio.play().catch(e => console.error("Eroare la redare:", e));
+
+    vinyl.classList.add('spin');
+
+    setTimeout(() => {
+        audio.pause();
+        vinyl.classList.remove('spin');
+    }, 15000);
+}
 /*final melodii */
     
 
@@ -184,7 +216,7 @@ function closePopup() {
 }
 function goToMusic()
 {
-    window.location.href="main.html";
+    window.location.href="/";
 }
 function goToFashion()
 {
@@ -212,19 +244,91 @@ document.querySelectorAll('.album').forEach(album => {
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("checkbox");
     const body = document.body;
-  
-    // Load saved theme
-    if (localStorage.getItem("theme") === "dark") {
-      body.classList.add("dark");
-      checkbox.checked = true;
-    }
-  
-    // Toggle theme on click
-    checkbox.addEventListener("change", () => {
-      body.classList.toggle("dark");
-      const mode = body.classList.contains("dark") ? "dark" : "";
-      localStorage.setItem("theme", mode);
-    });
-  });
 
+    // Apply saved theme from localStorage
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+        checkbox.checked = true;
+    }
+
+    checkbox.addEventListener("change", () => {
+        body.classList.toggle("dark");
+        const mode = body.classList.contains("dark") ? "dark" : "";
+        localStorage.setItem("theme", mode);
+    });
+});
+
+
+  window.addEventListener("load", () => {
+    const lastLetter = document.querySelector(".text.text19");
   
+    if (lastLetter) {
+      lastLetter.addEventListener("animationend", () => {
+        // Optional small delay
+        setTimeout(() => {
+            document.getElementById("main-site").style.display = "block";
+          document.getElementById("main-site").scrollIntoView({ behavior: "smooth" });
+        }, 1000); 
+        
+        setTimeout(() => {
+            document.getElementById("welcome-screen").style.display = "none";
+        }, 1500);
+      });
+      
+      
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const mainSite = document.getElementById('main-site');
+
+    if (sessionStorage.getItem('welcomeSeen') === 'true') {
+        welcomeScreen.style.display = 'none';
+        mainSite.style.display = 'block';
+        observeAlbums(); // 👈 adaugă aici
+    } else {
+        welcomeScreen.style.display = 'block';
+        mainSite.style.display = 'none';
+
+        const lastLetter = document.querySelector(".text.text19");
+        if (lastLetter) {
+            lastLetter.addEventListener("animationend", () => {
+                setTimeout(() => {
+                    mainSite.style.display = 'block';
+                    mainSite.scrollIntoView({ behavior: "smooth" });
+                    observeAlbums(); // 👈 adaugă aici
+                }, 800);
+
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    sessionStorage.setItem('welcomeSeen', 'true');
+                }, 1500);
+            });
+        }
+    }
+});
+
+function observeAlbums() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.album').forEach(album => {
+        observer.observe(album);
+    });
+}
+
+
+// === CART FUNCTIONS ===
+function toggleCart() {
+    const modal = document.getElementById("cart-modal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}
+

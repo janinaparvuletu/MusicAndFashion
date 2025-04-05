@@ -38,9 +38,16 @@ const products = [
 // Add product to cart
 function addToCart(productId) {
     const product = products.find(item => item.id === productId);
-    cart.push(product);
-    updateCartCount();
+    if (product) {
+        addToCartGood({
+            id: product.id,
+            name: product.name,
+            price: product.price
+        });
+    }
 }
+
+
 function rediraboutus()
 {   
     window.location.href="/aboutus";
@@ -50,7 +57,7 @@ function redircontact()
     window.location.href="/contact";
 }
 // Update cart count in the header
-function updateCartCount() {
+function updateCartDisplay() {
     const cartCount = document.getElementById('cart-count');
     cartCount.textContent = cart.length;
 }
@@ -90,6 +97,12 @@ function movevinyl(id) {
         });
         vinyl.classList.remove('spin');
 
+        // Oprește muzica și animația când închizi albumul
+        const audio = document.getElementById('dynamic-player');
+        audio.pause();
+        audio.currentTime = 0;
+        document.querySelectorAll('.vinyl.spin').forEach(v => v.classList.remove('spin'));
+
         //  AICI adaugi codul pentru ascunderea textului
         const popup = document.getElementById(`popup-${id}`);
         if (popup) {
@@ -110,10 +123,11 @@ function movevinyl(id) {
         album.classList.remove('active-vinyl');  // ✨ eliminăm transformările vechi
 
     });
+
     // Pune discul în centru și pornește animația
     clicked.style.order = '-1';
     vinyl.style.left = '50%';
-    vinyl.classList.add('spin');
+   // vinyl.classList.add('spin');
     clicked.classList.add('active-vinyl'); 
 
     // Afișează doar discul activ și ascunde restul DUPĂ ce s-a centrat
@@ -161,17 +175,42 @@ function closeAlbumPopup(id) {
     }
 }
 
+
+function playTrack(src, vinylId) {
+    const audio = document.getElementById('dynamic-player');
+
+    // Oprire muzică și animație anterioară
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = src;
+    audio.load();
+
+    // Oprește orice disc care se învârte
+    document.querySelectorAll('.vinyl.spin').forEach(v => v.classList.remove('spin'));
+
+    // Obține discul curent
+    const vinyl = document.getElementById(`${vinylId}`);
+    if (!vinyl) {
+        console.error('Vinilul nu a fost găsit!');
+        return;
+    }
+
+    // Pornește redarea
+    audio.play().then(() => {
+        vinyl.classList.add('spin');
+    }).catch(err => {
+        console.error('Redarea audio a eșuat:', err);
+    });
+
+    // Când se termină piesa, oprește discul
+    audio.onended = () => {
+        vinyl.classList.remove('spin');
+    };
+}
+
+
+
 /*final melodii */
-    
-
-
-
-
-
-
-
-/*final melodii */
-    
 
 
 function profilepopup() {
@@ -184,7 +223,7 @@ function closePopup() {
 }
 function goToMusic()
 {
-    window.location.href="main.html";
+    window.location.href="/";
 }
 function goToFashion()
 {
@@ -212,18 +251,91 @@ document.querySelectorAll('.album').forEach(album => {
 document.addEventListener("DOMContentLoaded", () => {
     const checkbox = document.getElementById("checkbox");
     const body = document.body;
-  
-    // Load saved theme
+
+    // Apply saved theme from localStorage
     if (localStorage.getItem("theme") === "dark") {
-      body.classList.add("dark");
-      checkbox.checked = true;
+        body.classList.add("dark");
+        checkbox.checked = true;
     }
-  
-    // Toggle theme on click
+
     checkbox.addEventListener("change", () => {
-      body.classList.toggle("dark");
-      const mode = body.classList.contains("dark") ? "dark" : "";
-      localStorage.setItem("theme", mode);
+        body.classList.toggle("dark");
+        const mode = body.classList.contains("dark") ? "dark" : "";
+        localStorage.setItem("theme", mode);
     });
-  });
+});
+
+
+  window.addEventListener("load", () => {
+    const lastLetter = document.querySelector(".text.text19");
   
+    if (lastLetter) {
+      lastLetter.addEventListener("animationend", () => {
+        // Optional small delay
+        setTimeout(() => {
+            document.getElementById("main-site").style.display = "block";
+          document.getElementById("main-site").scrollIntoView({ behavior: "smooth" });
+        }, 1000); 
+        
+        setTimeout(() => {
+            document.getElementById("welcome-screen").style.display = "none";
+        }, 1500);
+      });
+      
+      
+    }
+  });
+  document.addEventListener('DOMContentLoaded', function () {
+    const welcomeScreen = document.getElementById('welcome-screen');
+    const mainSite = document.getElementById('main-site');
+
+    if (sessionStorage.getItem('welcomeSeen') === 'true') {
+        welcomeScreen.style.display = 'none';
+        mainSite.style.display = 'block';
+        observeAlbums(); // 👈 adaugă aici
+    } else {
+        welcomeScreen.style.display = 'block';
+        mainSite.style.display = 'none';
+
+        const lastLetter = document.querySelector(".text.text19");
+        if (lastLetter) {
+            lastLetter.addEventListener("animationend", () => {
+                setTimeout(() => {
+                    mainSite.style.display = 'block';
+                    mainSite.scrollIntoView({ behavior: "smooth" });
+                    observeAlbums(); // 👈 adaugă aici
+                }, 800);
+
+                setTimeout(() => {
+                    welcomeScreen.style.display = 'none';
+                    sessionStorage.setItem('welcomeSeen', 'true');
+                }, 1500);
+            });
+        }
+    }
+});
+
+function observeAlbums() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    document.querySelectorAll('.album').forEach(album => {
+        observer.observe(album);
+    });
+}
+
+
+// === CART FUNCTIONS ===
+function toggleCart() {
+    const modal = document.getElementById("cart-modal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}
+

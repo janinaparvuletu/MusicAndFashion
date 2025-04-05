@@ -7,7 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('photos/wood.jpeg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -36,12 +36,19 @@ body {
     background: linear-gradient(145deg, #604428, #3b2e1a);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
-
-
+.popup-name {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .popup-email {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-bottom: 15px;
+  }
 .profile {
     width: 70px;
     height: 70px;
-    background-image: url('photos/profile.jpeg');
+    background-image: url('/photos/profile.jpeg');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -60,37 +67,33 @@ body {
 
 
 .popup-card {
-    background-color: rgba(255, 255, 255, 0.751); /* Semi-transparent */
-    backdrop-filter: blur(15px); /* Stronger blur */
-    -webkit-backdrop-filter: blur(15px); /* Safari support */
-    border-radius: 12px;
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 30px 20px;
     width: 300px;
     max-width: 90vw;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    color: white;
     position: relative;
-    color: white; /* text contrast */
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
-    
+    animation: popin 0.4s ease forwards;
+  
 }
-
 .popup-info {
     text-align: center;
 }
 
 
 .popup-avatar {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid brown;
-}
+    margin-bottom: 10px;
+    border: 3px solid brown;
+  }
 
 .popup-info h3 {
     margin: 0;
@@ -104,52 +107,49 @@ body {
 }
 
 .sign-up-btn {
-    margin-top: 5px;
-    padding: 5px 10px;
-    background-color: blue;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    padding: 8px 16px;
+    background: #007bff;
     border: none;
-    transition: 0.7s ease;
-}
-
-.sign-up-btn:hover {
-    transform: scale(1.1);
-}
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  .sign-up-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+  
 /* Fullscreen overlay */
 .profile-popup-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
     z-index: 1000;
-    backdrop-filter: blur(3px);
     transition: opacity 0.3s ease;
-}
-
-/* show popup */
-.profile-popup-overlay.show {
+  }
+  
+  .profile-popup-overlay.show {
     display: flex;
-}
+  }
 
 
-@keyframes popin {
+  @keyframes popin {
     from {
-        transform: scale(0.8);
-        opacity: 0;
+      transform: scale(0.9);
+      opacity: 0;
     }
     to {
-        transform: scale(1);
-        opacity: 1;
+      transform: scale(1);
+      opacity: 1;
     }
-}
+  }
 
 .popup-avatar {
     width: 80px;
@@ -174,18 +174,15 @@ body {
     position: absolute;
     top: 10px;
     right: 15px;
-    background: none;
-    border: none;
     font-size: 1.5rem;
-    font-weight: bold;
-    color: #252323;
+    background: none;
+    color: white;
+    border: none;
     cursor: pointer;
-    transition: color 0.2s ease;
-}
+  }
 
 .close-btn:hover {
     color: #cc0000;
-    background-color: white;
 
 }
 
@@ -218,7 +215,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -238,7 +235,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg'); /* sau orice imagine ai folosit sus */
+    background-image: url('/photos/background_top_bar.jpg'); /* sau orice imagine ai folosit sus */
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -321,6 +318,10 @@ body {
 .album:hover {
     transform: scale(1.07) translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+.album p
+{
+    color: black;
 }
 .cover {
 	position: relative;
@@ -410,27 +411,22 @@ body {
 /*melodii*/
 
 .vinyl-info-container {
-    position: absolute;
-    top: 120px;
-    right: 300px;
-    width: 35vw;
-    max-width: 700px;
-    min-width: 300px;
-    height: 4000px; /* ← această linie adăugată */
-    max-height: 300px;
-    padding: 30px;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-    font-size: 1.1rem;
-    line-height: 1.6;
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    color: black;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: 30px auto;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
     transform: translateY(20px);
-    overflow-y: auto;        /* ADĂUGAT – scroll vertical */
-    scrollbar-width: thin;   /* opțional – pentru Firefox */
+    transition: opacity 0.5s ease, transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .vinyl-info-container.show {
@@ -442,6 +438,53 @@ body {
 .hidden {
     display: none;
 }
+
+.album-popup {
+    position: fixed;
+    height: 200px;
+    max-height: 500px;
+    width:80%;
+    max-width=1000px;
+    top: 40%;
+    left: 70%;
+    transform: translate(-50%, -40%) scale(0.95);
+    z-index: 2000;
+    background: white;
+    color: black;
+    padding: 25px;
+    border-radius: 10px;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.album-popup.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.album-popup .close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.album-popup .close-btn:hover {
+    color: red;
+}
+
 
 /*melofii final*/
 
@@ -466,7 +509,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(5px);

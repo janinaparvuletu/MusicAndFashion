@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion</title>
+    <link rel="stylesheet" href="fashion.css">
+</head>
+<body>
+
+    <!-- Header with Fashion title and Filters in line -->
+    <header>
+        <div class="navbar">
+            <h1>Fashion</h1>
+            <div class="filter-container">
+                <!-- Category Filter -->
+                <div class="filter">
+                    <label for="category">Category</label>
+                    <select id="category" onchange="applyFilters()">
+                        <option value="">All Categories</option>
+                        <option value="Clothing">Clothing</option>
+                        <option value="Shoes">Shoes</option>
+                        <option value="Accessories">Accessories</option>
+                    </select>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter">
+                    <label for="price">Price Range</label>
+                    <select id="price" onchange="applyFilters()">
+                        <option value="">All Prices</option>
+                        <option value="low">Under $50</option>
+                        <option value="mid">$50 - $100</option>
+                        <option value="high">Over $100</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+ <!-- Cart Button in Body Section -->
+ <div class="cart-container">
+    <button class="cart-btn" onclick="toggleCart()">
+        Cart (<span id="cart-count">0</span> items)
+    </button>
+</div>
+    <!-- Product Section -->
+    <section class="products">
+        <h2>Our Drip Collection</h2>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Janina.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Alex.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Clothing">
+            <img src="/photos/Horia.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <div class="product-info">
+                <h3>Cool Drip Hoodie</h3>
+                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <p class="price">$45.00</p>
+                <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
+            </div>
+        </div>
+
+        <!-- Add more product cards here -->
+    </section>
+
+   
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cart-modal">
+        <div class="cart-content">
+            <h3>Your Cart</h3>
+            <ul id="cart-items">
+                <li>No items in your cart.</li>
+            </ul>
+            <button class="close-btn" onclick="toggleCart()">Close</button>
+        </div>
+    </div>
+
+    <!-- Zoomed Image Container -->
+    <div id="zoom-container" class="zoom-container">
+        <span class="close-zoom" onclick="closeZoom()">×</span>
+        <img id="zoomed-img" class="zoomed-img" src="" alt="Zoomed Image">
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 Drip Sale Shop. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="fashion.js"></script>
+</body>
+</html>

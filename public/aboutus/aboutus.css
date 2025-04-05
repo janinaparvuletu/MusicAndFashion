@@ -1,0 +1,68 @@
+/* Centering the content on the page */
+.page-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.about-container {
+  text-align: center;
+  max-width: 800px;
+  background-color: #f4f4f4;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading styles */
+.about-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Team Member Section */
+.team-members {
+  display: flex; /* Use flexbox to display the images in a row */
+  justify-content: space-around; /* Space the images evenly */
+  align-items: center; /* Vertically center the items */
+  gap: 20px; /* Add space between the team members */
+  flex-wrap: wrap; /* Allow the items to wrap to the next line if needed (for responsiveness) */
+  margin-top: 20px; /* Add some space above the images */
+}
+
+/* Image styling for the team members */
+.image-minimized {
+  width: 150px; /* Minimized image size */
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease; /* Add smooth transition for hover effect */
+}
+
+.image-minimized:hover {
+  transform: scale(1.1); /* Enlarge image slightly on hover */
+}
+
+/* Adjusting the text styling for each member */
+.team-member p {
+  font-size: 1rem;
+  color: #555;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Links for Instagram */
+.team-member a {
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Optional: Hover effect on images for a bit of interactivity */
+.team-member a:hover .image-minimized {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}

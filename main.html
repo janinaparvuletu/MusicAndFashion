@@ -7,6 +7,7 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="main.css">
         <title>M&F</title>
 
@@ -27,22 +28,18 @@
                     <div class="vinyl" id="1">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover4.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover4.jpg');"></div>
                     <div class="denumire-album">
                     <p> Plecat de acasa </p>
+                    </div>
                 </div>
-            <div class="hidden" id="vinyl-info-container">
-                <h2>Informatii album</h2>
-                <p id="vinyl-info-text">Info</p>    
-            </div>
-
-                </div>
+            
                 <div class="album" onclick="movevinyl(2)">
                     <div class="vinyl" id="2">
                         <div class="print"></div>
                        
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover5.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover5.jpg');"></div>
                     <div class="denumire-album">
                     <p> Luna Plina </p>
                 </div>
@@ -51,7 +48,7 @@
                     <div class="vinyl" id="3">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover11.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover11.jpg');"></div>
                     <div class="denumire-album">
                     <p> Live @ Untold 2019 </p>
                 </div>
@@ -60,7 +57,7 @@
                     <div class="vinyl" id="4">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover3.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover3.jpg');"></div>
                     <div class="denumire-album">
                     <p> Nanelien </p>
                 </div>
@@ -69,7 +66,7 @@
                     <div class="vinyl" id="5">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover9.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover9.jpg');"></div>
                     <div class="denumire-album">
                     <p> CORDIAL </p>
                 </div>
@@ -78,7 +75,7 @@
                     <div class="vinyl" id="6">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover7.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover7.jpg');"></div>
                     <div class="denumire-album">
                     <p> L.V. Pattern </p>
                 </div>
@@ -88,7 +85,7 @@
                         <div class="print"></div>
                        
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover8.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover8.jpg');"></div>
                     <div class="denumire-album">
                     <p> De-ale Mele II </p>
                 </div>
@@ -97,47 +94,106 @@
                     <div class="vinyl" id="8">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover6.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover6.jpg');"></div>
                     <div class="denumire-album">
                     <p> TRAUME ȘI COȘMARURI </p>
                 </div>
                 </div>
-                <div class="album" onclick="movevinyl(7)">
-                    <div class="vinyl" id="7">
+                <div class="album" onclick="movevinyl(9)">
+                    <div class="vinyl" id="9">
                         <div class="print"></div>
                        
                     </div>
-                    <div class="cover" style="background-image: url('photos/Nane.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/Nane.jpg');"></div>
                     <div class="denumire-album">
                     <p> Avram </p>
                 </div>
                 </div>
-                <div class="album" onclick="movevinyl(8)">
-                    <div class="vinyl" id="8">
+                <div class="album" onclick="movevinyl(10)">
+                    <div class="vinyl" id="10">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover10.jpg');"></div>
+                    <div class="cover" style="background-image: url('/photos/cover10.jpg');"></div>
                     <div class="denumire-album">
                         <p> b0@b3 </p>
                     </div>
                 </div>
                 
             </div>
+            <div class="album-popup" id="popup-1">
+                <h2>Plecat de acasă</h2>
+                <p>Primul album lansat de Nane în 2010. Atmosferă nostalgic-urbană.</p>
+              </div>
+
+              <div class="album-popup" id="popup-2">
+                <h2>Luna Plină</h2>
+                <p>Un mix misterios de trap și hip-hop, cu versuri visătoare.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-3">
+                <h2>Live @ Untold 2019</h2>
+                <p>Înregistrare live. Energie maximă și conexiune cu publicul.</p>
+              </div>
+
+              <div class="album-popup" id="popup-4">
+                <h2>Nanelien</h2>
+                <p>Un album conceptual cu vibe-uri SF, unde Nane își explorează stilul unic.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-5">
+                <h2>CORDIAL</h2>
+                <p>Un proiect sincer și personal, cu teme legate de prietenie, trădare și maturizare.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-6">
+                <h2>L.V. Pattern</h2>
+                <p>Inspirat din lumea fashion-ului, albumul combină beat-uri elegante cu mesaje criptice.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-7">
+                <h2>De-ale Mele II</h2>
+                <p>Continuarea naturală a primului „De-ale Mele”, cu un ton mai matur și introspectiv.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-8">
+                <h2>TRAUME ȘI COȘMARURI</h2>
+                <p>Un album întunecat și visceral, care explorează lupta interioară și traumele nevindecate.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-9">
+                <h2>Avram</h2>
+                <p>O dedicație emoțională, probabil cu referințe personale profunde. Emoție pură.</p>
+              </div>
+              
+              <div class="album-popup" id="popup-10">
+                <h2>b0@b3</h2>
+                <p>Cel mai experimental album al lui Nane, cu influențe digitale și sound-uri cyberpunk.</p>
+              </div>
+              
         
 
-            <div class="profile-popup-overlay" id="profile-popup">
+              <div class="profile-popup-overlay" id="profile-popup">
                 <div class="popup-card">
                   <button class="close-btn" onclick="closePopup()">×</button>
-                  <img class="popup-avatar" src="photos/profile.jpeg" alt="Profile picture">
-                  <div class="popup-info">
-                    <h3>Guest</h3>
-                    <p>guest@email.com</p>
-                    <button class="logout-btn">Logout</button>
+                  
+                  <img class="popup-avatar" src="/photos/profile.jpeg" alt="Profile picture">
+                  
+                  <h3 class="popup-name">Guest</h3>
+                  <p class="popup-email">guest@culturedrop.com</p>
+              
+                  <div class="theme-toggle-wrapper">
+                    <input type="checkbox" class="checkbox" id="checkbox">
+                    <label for="checkbox" class="checkbox-label" title="Switch theme">
+                      <i class="fas fa-moon"></i>
+                      <i class="fas fa-sun"></i>
+                      <span class="ball"></span>
+                    </label>
                   </div>
-                  <button class="lightdark" id="theme-toggle">Switch to Dark Mode</button>        
-
+              
+                  <button class="sign-up-btn">Sign Up</button>
                 </div>
               </div>
+              
                  
               <div class="footer-spacer"></div>
 

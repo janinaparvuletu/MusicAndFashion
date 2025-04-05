@@ -34,7 +34,6 @@ const products = [
 
 
 // Cart functionality
-let cart = [];
 
 // Add product to cart
 function addToCart(productId) {
@@ -44,11 +43,11 @@ function addToCart(productId) {
 }
 function rediraboutus()
 {   
-    window.location.href="aboutus.html";
+    window.location.href="/aboutus";
 }
 function redircontact()
 {
-    window.location.href="contact.html";
+    window.location.href="/contact";
 }
 // Update cart count in the header
 function updateCartCount() {
@@ -57,7 +56,7 @@ function updateCartCount() {
 }
 
 
-/*VINYL  */
+//*VINYL  */
 
 let currentOpenId = null;
 let originalPositions = null;
@@ -89,7 +88,14 @@ function movevinyl(id) {
             const innerVinyl = album.querySelector('.vinyl');
             innerVinyl.style.left = '0'; // readuce discul în poziția de start
         });
-                vinyl.classList.remove('spin');
+        vinyl.classList.remove('spin');
+
+        //  AICI adaugi codul pentru ascunderea textului
+        const popup = document.getElementById(`popup-${id}`);
+        if (popup) {
+            popup.classList.remove("show");
+            popup.style.display = "none"; // ✨ asigură ascunderea
+        }
         currentOpenId = null;
         return;
     }
@@ -124,8 +130,8 @@ function movevinyl(id) {
     setTimeout(() => {
         vinyl.classList.remove('spin');
     }, 10000);
-
-    OpenContiner(id);
+ 
+     OpenContiner(id); 
 
 }
  /*END VINYL */
@@ -133,48 +139,39 @@ function movevinyl(id) {
 /*melodii  */
 
 function OpenContiner(id) {
-    const infoContainer = document.getElementById('vinyl-info-container');
-    const infoText = document.getElementById('vinyl-info-text');
+    // Închide toate popup-urile
+    document.querySelectorAll('.album-popup').forEach(popup => {
+        popup.classList.remove("show");
+        popup.style.display = "none"; // ✨ forțăm ascunderea
+    });
 
-    infoContainer.classList.remove('hidden');
-    setTimeout(() => {
-        infoContainer.classList.add('show');
-    }, 200);
-
-    infoText.textContent = `Acesta este discul #${id}. Poți adăuga aici informații personalizate.`;
+    // Afișează doar popup-ul activ
+    const popup = document.getElementById(`popup-${id}`);
+    if (popup) {
+        popup.style.display = "flex"; // ✨ forțăm afișarea
+        popup.classList.add("show");
+    }
 }
+
+
+function closeAlbumPopup(id) {
+    const popup = document.getElementById(`popup-${id}`);
+    if (popup) {
+        popup.classList.remove("show");
+    }
+}
+
+/*final melodii */
+    
+
+
+
 
 
 
 
 /*final melodii */
     
-    /* horia cod*/
-// Get the button and body elements
-const themeToggleButton = document.getElementById('theme-toggle');
-const body = document.body;
-
-// Check if the user has previously selected a theme (stored in localStorage)
-if (localStorage.getItem('theme') === 'dark') {
-    body.classList.add('dark');
-    themeToggleButton.textContent = 'Switch to Light Mode';  // Change button text
-}
-
-// Toggle the theme when the button is clicked
-themeToggleButton.addEventListener('click', function() {
-    body.classList.toggle('dark');
-
-    // Change button text based on current theme
-    if (body.classList.contains('dark')) {
-        themeToggleButton.textContent = 'Switch to Light Mode';
-        localStorage.setItem('theme', 'dark');  // Save theme in localStorage
-    } else {
-        themeToggleButton.textContent = 'Switch to Dark Mode';
-        localStorage.setItem('theme', 'light'); // Save theme in localStorage
-    }
-});
-
-/*horia sfarsit cod*/
 
 
 function profilepopup() {
@@ -191,51 +188,42 @@ function goToMusic()
 }
 function goToFashion()
 {
-    window.location.href="fashion.html";
+    window.location.href="/fashion";
 }
 
 
-
-
-
-
-
-/*cartmodel*/
-let cart = [];
-
-document.querySelectorAll('.add-to-cart').forEach(button => {
-    button.addEventListener('click', (e) => {
-        const productElement = e.target.closest('.product');
-        const productName = productElement.querySelector('h3').textContent;
-        const productPrice = parseFloat(productElement.querySelector('p').textContent.replace('$', ''));
-
-        cart.push({ name: productName, price: productPrice });
-        updateCart();
+// Intersection Observer to reveal albums on scroll
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target); // optional: stop observing after it appears
+        }
     });
+}, {
+    threshold: 0.1
 });
 
-function updateCart() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotalContainer = document.getElementById('cart-total');
-    
-    cartItemsContainer.innerHTML = '';
-    let total = 0;
-
-    cart.forEach(item => {
-        const itemElement = document.createElement('div');
-        itemElement.classList.add('cart-item');
-        itemElement.textContent = `${item.name} - $${item.price.toFixed(2)}`;
-        cartItemsContainer.appendChild(itemElement);
-        total += item.price;
-    });
-
-    cartTotalContainer.textContent = total.toFixed(2);
-}
-
-document.querySelector('#cart').addEventListener('click', () => {
-    document.getElementById('cart-modal').style.display = 'flex';
+// Apply observer to all album elements
+document.querySelectorAll('.album').forEach(album => {
+    observer.observe(album);
 });
 
-function closeCart() {
-    document.getElementById('cart-modal').style.display = 'none';
-}
+document.addEventListener("DOMContentLoaded", () => {
+    const checkbox = document.getElementById("checkbox");
+    const body = document.body;
+  
+    // Load saved theme
+    if (localStorage.getItem("theme") === "dark") {
+      body.classList.add("dark");
+      checkbox.checked = true;
+    }
+  
+    // Toggle theme on click
+    checkbox.addEventListener("change", () => {
+      body.classList.toggle("dark");
+      const mode = body.classList.contains("dark") ? "dark" : "";
+      localStorage.setItem("theme", mode);
+    });
+  });
+  

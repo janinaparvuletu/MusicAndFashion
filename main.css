@@ -1,4 +1,5 @@
-
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+* {box-sizing: border-box;}
 body {
     display: flex;
     flex-direction: column;
@@ -6,7 +7,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-image: url('photos/wood.jpeg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -35,12 +36,19 @@ body {
     background: linear-gradient(145deg, #604428, #3b2e1a);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
-
-
+.popup-name {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+  .popup-email {
+    font-size: 0.9rem;
+    color: #ddd;
+    margin-bottom: 15px;
+  }
 .profile {
     width: 70px;
     height: 70px;
-    background-image: url('photos/profile.jpeg');
+    background-image: url('/photos/profile.jpeg');
     background-size: cover;
     background-position: center;
     border-radius: 50%;
@@ -57,44 +65,35 @@ body {
     transform: scale(1.1);
 }
 
-.profile-popup {
-    display: none;
-    position: absolute;
-    top: 80px; /* Sub iconiță */
-    right: 20px;
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(8px);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    padding: 15px;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    transform: translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-    width: 250px;
-}
-
-.profile-popup.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
 
 .popup-card {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 30px 20px;
+    width: 300px;
+    max-width: 90vw;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    color: white;
+    position: relative;
+    animation: popin 0.4s ease forwards;
+  
+}
+.popup-info {
+    text-align: center;
 }
 
+
 .popup-avatar {
-    width: 60px;
-    height: 60px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid brown;
-}
+    margin-bottom: 10px;
+    border: 3px solid brown;
+  }
 
 .popup-info h3 {
     margin: 0;
@@ -107,62 +106,50 @@ body {
     color: #555;
 }
 
-.logout-btn {
-    margin-top: 5px;
-    padding: 5px 10px;
-    background-color: #cc0000;
-    color: white;
+.sign-up-btn {
+    background: #007bff;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-}
-
-.logout-btn:hover {
-    background-color: #a80000;
-}
+    margin-top: 10px;
+    transition: background 0.3s ease;
+  }
+  .sign-up-btn:hover {
+    background: #0056b3;
+    transform: scale(1.05);
+  }
+  
 /* Fullscreen overlay */
 .profile-popup-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     display: none;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
     z-index: 1000;
-    backdrop-filter: blur(3px);
     transition: opacity 0.3s ease;
-}
-
-/* show popup */
-.profile-popup-overlay.show {
+  }
+  
+  .profile-popup-overlay.show {
     display: flex;
-}
+  }
 
-/* Popup card centered */
-.popup-card {
-    background-color: white;
-    border-radius: 12px;
-    padding: 20px;
-    width: 300px;
-    max-width: 90vw;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
-    animation: popin 0.3s ease-out;
-}
 
-@keyframes popin {
+  @keyframes popin {
     from {
-        transform: scale(0.8);
-        opacity: 0;
+      transform: scale(0.9);
+      opacity: 0;
     }
     to {
-        transform: scale(1);
-        opacity: 1;
+      transform: scale(1);
+      opacity: 1;
     }
-}
+  }
 
 .popup-avatar {
     width: 80px;
@@ -183,39 +170,22 @@ body {
     color: #555;
 }
 
-.logout-btn {
-    padding: 8px 16px;
-    background-color: #cc0000;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.logout-btn:hover {
-    background-color: #a80000;
-}
 .close-btn {
     position: absolute;
     top: 10px;
     right: 15px;
-    background: none;
-    border: none;
     font-size: 1.5rem;
-    font-weight: bold;
-    color: #666;
+    background: none;
+    color: white;
+    border: none;
     cursor: pointer;
-    transition: color 0.2s ease;
-}
+  }
 
 .close-btn:hover {
     color: #cc0000;
-    background-color: white;
 
 }
-.popup-card {
-    position: relative;
-}
+
 .footer-spacer {
     height: 40px; /* cât are și footerul sau puțin mai mult */
     width: 100%;
@@ -245,7 +215,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -265,7 +235,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg'); /* sau orice imagine ai folosit sus */
+    background-image: url('/photos/background_top_bar.jpg'); /* sau orice imagine ai folosit sus */
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -311,20 +281,11 @@ body {
 /*vinil*/
 
 .album-container {
-    /*height: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
-    gap: 60px;
-    justify-content: center;
-    padding: 60px;*/
-
     display: grid;
     grid-template-columns: repeat(4, 190px); /* fix 4 coloane de 190px */
     gap: 120px; /*De aici schimb dimensiunea intre coloanele de viniluri    */
     justify-content: center; /* centrează întregul grid */
     padding: 60px;
-    
-    
 }
 @media (max-width: 900px) {
     .album-container {
@@ -337,17 +298,19 @@ body {
         grid-template-columns: repeat(1, 190px);
     }
 }
-
-
-
 .album {
     position: relative;
     width: 190px;
     height: 190px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.8s ease, box-shadow 0.3s ease;
     color: white;
+    opacity: 0;
+    transform: translateY(50px);
 }
-
+.album.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 .album.active-vinyl {
     transform: translateX(10%) scale(1.1);
     transition: transform 2s ease;
@@ -356,7 +319,10 @@ body {
     transform: scale(1.07) translateY(-5px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
-
+.album p
+{
+    color: black;
+}
 .cover {
 	position: relative;
 	top: 0;
@@ -371,8 +337,6 @@ body {
 	cursor: pointer;   
     
 }
-
-
 .cover::before {
 	position: absolute;
 	top: 0;
@@ -399,7 +363,6 @@ body {
 	opacity: 0.2;
 	content: '';
 }
-
 .vinyl {
 	position: absolute;
 	top: 6%;
@@ -412,8 +375,6 @@ body {
 	border-radius: 50%;
     transition: left 0.8s ease-in-out;
 }
-
-
 .vinyl.spin {
 	animation: spinThat 10s linear forwards;
 }
@@ -429,9 +390,6 @@ body {
 	opacity: 0.3;
 	content: '';
 }
-
-
-
 .print {
 	position: absolute;
 	top: 33%;
@@ -443,7 +401,6 @@ body {
 	background-size: cover;
 	border-radius: 50%;
 }
-
 @keyframes spinThat {
 	from { transform: rotate(0deg); }
 	to   { transform: rotate(3600deg); }
@@ -454,26 +411,76 @@ body {
 /*melodii*/
 
 .vinyl-info-container {
-    width: 80%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    color: black;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: 30px auto;
     opacity: 0;
     pointer-events: none;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .vinyl-info-container.show {
     opacity: 1;
     pointer-events: auto;
+    transform: translateY(0);
 }
 
 .hidden {
     display: none;
 }
 
+.album-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 25px;
+    border-radius: 10px;
+    z-index: 9999;
+    width: 400px;
+    max-width: 90vw;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    display: none; /* din start */
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.album-popup.show {
+    display: flex;
+    transition: transform 0.7s ease ;
+}
+
+.album-popup .close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.album-popup .close-btn:hover {
+    color: red;
+}
+
+
+/*melofii final*/
 
 
 .top-bar {
@@ -496,7 +503,7 @@ body {
     left: 0;
     height: 100%;
     width: 100%;
-    background-image: url('photos/background_top_bar.jpg');
+    background-image: url('/photos/light_wall.jpg');
     background-size: cover;
     background-position: center;
     filter: blur(5px);
@@ -506,11 +513,44 @@ body {
     position: relative;
 }
 
-    
 
-html, body {
-    overflow: auto; /* Allow scrolling if necessary */
+.checkbox {
+    opacity: 0;
+    position: absolute;
   }
+  
+  .checkbox-label {
+    background-color: #111;
+    width: 50px;
+    height: 26px;
+    border-radius: 50px;
+    position: relative;
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .fa-moon {color: #f1c40f;}
+  
+  .fa-sun {color: #f39c12;}
+  
+  .checkbox-label .ball {
+    background-color: #fff;
+    width: 22px;
+    height: 22px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    transition: transform 0.2s linear;
+  }
+  
+  .checkbox:checked + .checkbox-label .ball {
+    transform: translateX(24px);
+  }
+  
 
 
 @keyframes typingEffect {

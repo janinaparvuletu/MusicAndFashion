@@ -55,22 +55,10 @@ function updateCartCount() {
     const cartCount = document.getElementById('cart-count');
     cartCount.textContent = cart.length;
 }
-const text = "Welcome to M&F";
-const welcomeEl = document.querySelector(".welcome");
-let i = 0;
-
-function typeChar() {
-    if (i < text.length) {
-        welcomeEl.textContent += text.charAt(i);
-        i++;
-        setTimeout(typeChar, 100);
-    }
-}
-
-typeChar();
 
 
 /*VINYL  */
+
 let currentOpenId = null;
 let originalPositions = null;
 
@@ -97,8 +85,11 @@ function movevinyl(id) {
             album.classList.remove('active-vinyl'); //  revine la dimensiunea inițială
         });
     
-        vinyl.style.left = '0';
-        vinyl.classList.remove('spin');
+        albums.forEach(album => {
+            const innerVinyl = album.querySelector('.vinyl');
+            innerVinyl.style.left = '0'; // readuce discul în poziția de start
+        });
+                vinyl.classList.remove('spin');
         currentOpenId = null;
         return;
     }
@@ -111,6 +102,7 @@ function movevinyl(id) {
         vinyl.style.left = '0';
         vinyl.classList.remove('spin');
         album.classList.remove('active-vinyl');  // ✨ eliminăm transformările vechi
+
     });
     // Pune discul în centru și pornește animația
     clicked.style.order = '-1';
@@ -132,11 +124,30 @@ function movevinyl(id) {
     setTimeout(() => {
         vinyl.classList.remove('spin');
     }, 10000);
+
+    OpenContiner(id);
+
+}
+ /*END VINYL */
+
+/*melodii  */
+
+function OpenContiner(id) {
+    const infoContainer = document.getElementById('vinyl-info-container');
+    const infoText = document.getElementById('vinyl-info-text');
+
+    infoContainer.classList.remove('hidden');
+    setTimeout(() => {
+        infoContainer.classList.add('show');
+    }, 200);
+
+    infoText.textContent = `Acesta este discul #${id}. Poți adăuga aici informații personalizate.`;
 }
 
 
-    /*END VINYL */
 
+
+/*final melodii */
     
     /* horia cod*/
 // Get the button and body elements
@@ -173,4 +184,58 @@ function profilepopup() {
 function closePopup() {
     const popup = document.getElementById('profile-popup');
     popup.classList.remove('show');
+}
+function goToMusic()
+{
+    window.location.href="main.html";
+}
+function goToFashion()
+{
+    window.location.href="fashion.html";
+}
+
+
+
+
+
+
+
+/*cartmodel*/
+let cart = [];
+
+document.querySelectorAll('.add-to-cart').forEach(button => {
+    button.addEventListener('click', (e) => {
+        const productElement = e.target.closest('.product');
+        const productName = productElement.querySelector('h3').textContent;
+        const productPrice = parseFloat(productElement.querySelector('p').textContent.replace('$', ''));
+
+        cart.push({ name: productName, price: productPrice });
+        updateCart();
+    });
+});
+
+function updateCart() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const cartTotalContainer = document.getElementById('cart-total');
+    
+    cartItemsContainer.innerHTML = '';
+    let total = 0;
+
+    cart.forEach(item => {
+        const itemElement = document.createElement('div');
+        itemElement.classList.add('cart-item');
+        itemElement.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItemsContainer.appendChild(itemElement);
+        total += item.price;
+    });
+
+    cartTotalContainer.textContent = total.toFixed(2);
+}
+
+document.querySelector('#cart').addEventListener('click', () => {
+    document.getElementById('cart-modal').style.display = 'flex';
+});
+
+function closeCart() {
+    document.getElementById('cart-modal').style.display = 'none';
 }

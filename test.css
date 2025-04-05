@@ -48,3 +48,78 @@ body {
         width: 100%;
     }
 }
+/* Global styles */
+:root {
+    --background-light: #ffffff;
+    --background-dark: #121212;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --button-light: #0072ff;
+    --button-dark: #6200ea;
+    --header-light: #f4f4f4;
+    --header-dark: #333;
+}
+
+/* Default Light Theme */
+body {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--header-light);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--button-light);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--header-light);
+    margin-top: 20px;
+}
+
+/* Dark Theme */
+body.dark {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+header.dark {
+    background-color: var(--header-dark);
+}
+
+button.dark {
+    background-color: var(--button-dark);
+}
+
+button.dark:hover {
+    background-color: #3700b3;
+}
+
+footer.dark {
+    background-color: var(--header-dark);
+}

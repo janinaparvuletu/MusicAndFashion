@@ -8,15 +8,16 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="main.css">
-        <link rel="stylesheet" href="darklight.css">
         <title>M&F</title>
 
     </head>
     <body>
         <div class="top-bar">
-            <div class="welcome-wrapper">
-                <div class="welcome"></div>
-            </div>  
+           
+            <div class="top-buttons">
+                <button class="top-btn" onclick="goToMusic()">🎵 Music</button>
+                <button class="top-btn" onclick="goToFashion()">👗 Fashion</button>
+            </div>
             <div class="profile" onclick="profilepopup()"></div>
 
         </div>
@@ -26,32 +27,101 @@
                     <div class="vinyl" id="1">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/Nane.jpg');"></div>
+                    <div class="cover" style="background-image: url('photos/cover4.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> Plecat de acasa </p>
+                </div>
+            <div class="hidden" id="vinyl-info-container">
+                <h2>Informatii album</h2>
+                <p id="vinyl-info-text">Info</p>    
+            </div>
+
                 </div>
                 <div class="album" onclick="movevinyl(2)">
                     <div class="vinyl" id="2">
                         <div class="print"></div>
+                       
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover2.jpg');"></div>
+                    <div class="cover" style="background-image: url('photos/cover5.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> Luna Plina </p>
+                </div>
                 </div>
                 <div class="album" onclick="movevinyl(3)">
                     <div class="vinyl" id="3">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover3.jpg');"></div>
+                    <div class="cover" style="background-image: url('photos/cover11.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> Live @ Untold 2019 </p>
+                </div>
                 </div>
                 <div class="album" onclick="movevinyl(4)">
                     <div class="vinyl" id="4">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover4.jpg');"></div>
+                    <div class="cover" style="background-image: url('photos/cover3.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> Nanelien </p>
+                </div>
                 </div>
                 <div class="album" onclick="movevinyl(5)">
                     <div class="vinyl" id="5">
                         <div class="print"></div>
                     </div>
-                    <div class="cover" style="background-image: url('photos/cover5.jpg');"></div>
+                    <div class="cover" style="background-image: url('photos/cover9.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> CORDIAL </p>
                 </div>
+                </div>
+                <div class="album" onclick="movevinyl(6)">
+                    <div class="vinyl" id="6">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover7.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> L.V. Pattern </p>
+                </div>
+                </div>
+                <div class="album" onclick="movevinyl(7)">
+                    <div class="vinyl" id="7">
+                        <div class="print"></div>
+                       
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover8.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> De-ale Mele II </p>
+                </div>
+                </div>
+                <div class="album" onclick="movevinyl(8)">
+                    <div class="vinyl" id="8">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover6.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> TRAUME ȘI COȘMARURI </p>
+                </div>
+                </div>
+                <div class="album" onclick="movevinyl(7)">
+                    <div class="vinyl" id="7">
+                        <div class="print"></div>
+                       
+                    </div>
+                    <div class="cover" style="background-image: url('photos/Nane.jpg');"></div>
+                    <div class="denumire-album">
+                    <p> Avram </p>
+                </div>
+                </div>
+                <div class="album" onclick="movevinyl(8)">
+                    <div class="vinyl" id="8">
+                        <div class="print"></div>
+                    </div>
+                    <div class="cover" style="background-image: url('photos/cover10.jpg');"></div>
+                    <div class="denumire-album">
+                        <p> b0@b3 </p>
+                    </div>
+                </div>
+                
             </div>
         
 
@@ -64,19 +134,21 @@
                     <p>guest@email.com</p>
                     <button class="logout-btn">Logout</button>
                   </div>
+                  <button class="lightdark" id="theme-toggle">Switch to Dark Mode</button>        
+
                 </div>
               </div>
                  
-            
-            <button id="theme-toggle">Switch to Dark Mode</button>        
+              <div class="footer-spacer"></div>
+
 
     </body>
     <footer id="footer">
 
         <div class="footer-content">
-            <span onclick="rediraboutus()"> AboutUs</span>
+            <span onclick="rediraboutus()" style="cursor: pointer;"> AboutUs</span>
             <span> | </span>
-            <span onclick="redircontact()"> Contact </span>
+            <span onclick="redircontact()" style="cursor: pointer;"> Contact </span>
         </div>
         <script src="main.js"></script>
 

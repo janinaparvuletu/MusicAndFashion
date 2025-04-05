@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.top-bar {
+    display: flex;
+    position: relative;
+    height: 40vh;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: flex-start; 
+}
+
+.background-blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-image: url('background_top_bar.jpg');
+    background-position: center;
+    filter: blur(5px);
+    z-index: 1;
+}
+.welcome {
+    font-size: 3rem;
+    color: white;
+    z-index: 2;
+    max-width: 90vw;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+
+@keyframes typingEffect {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+/* Global styles */
+:root {
+    --background-light: #ffffff;
+    --background-dark: #121212;
+    --text-light: #000000;
+    --text-dark: #ffffff;
+    --button-light: #0072ff;
+    --button-dark: #6200ea;
+    --header-light: #f4f4f4;
+    --header-dark: #333;
+}
+
+/* Default Light Theme */
+body {
+    background-color: var(--background-light);
+    color: var(--text-light);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--header-light);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #ddd;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: var(--button-light);
+    color: var(--text-light);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: var(--header-light);
+    margin-top: 20px;
+}
+
+/* Dark Theme */
+body.dark {
+    background-color: var(--background-dark);
+    color: var(--text-dark);
+}
+
+header.dark {
+    background-color: var(--header-dark);
+}
+
+button.dark {
+    background-color: var(--button-dark);
+}
+
+button.dark:hover {
+    background-color: #3700b3;
+}
+
+footer.dark {
+    background-color: var(--header-dark);
+}

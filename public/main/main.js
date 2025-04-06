@@ -65,15 +65,21 @@ function updateCartDisplay() {
 
 //*VINYL  */
 
+// Updated movevinyl to handle open on album click and close on cover click only
+
 let currentOpenId = null;
 let originalPositions = null;
 
-function movevinyl(id) {
-    const albums = document.querySelectorAll('.album');
-    const clicked = document.querySelector(`.album[onclick="movevinyl(${id})"]`);
-    const vinyl = clicked.querySelector('.vinyl');
+function movevinyl(event, id) {
+    const clicked = event.currentTarget;
 
-    // Salvăm pozițiile originale o singură dată
+    // Detect if user clicked the .cover
+    const isCoverClick = event.target.classList.contains("cover");
+
+    const albums = document.querySelectorAll('.album');
+    const vinyl = clicked.querySelector('.vinyl');
+    const buyBtn = document.getElementById(`buy-album-${id}`);
+
     if (!originalPositions) {
         originalPositions = {};
         albums.forEach((album, index) => {
@@ -82,85 +88,112 @@ function movevinyl(id) {
         });
     }
 
-    // Dacă deja este deschis, îl închidem
-    if (currentOpenId === id) {
+    // CLOSE if cover clicked and this album is already open
+    if (isCoverClick && currentOpenId === id) {
         albums.forEach(album => {
             album.style.display = 'block';
             const albumId = album.querySelector('.vinyl').id;
             album.style.order = originalPositions[albumId];
-            album.classList.remove('active-vinyl'); //  revine la dimensiunea inițială
+            album.classList.remove('active-vinyl');
+            document.getElementById(`buy-album-${id}`).style.display = "none";
         });
-    
+
         albums.forEach(album => {
             const innerVinyl = album.querySelector('.vinyl');
-            innerVinyl.style.left = '0'; // readuce discul în poziția de start
+            innerVinyl.style.left = '0';
         });
+
         vinyl.classList.remove('spin');
 
-        //  AICI adaugi codul pentru ascunderea textului
+        const audio = document.getElementById('dynamic-player');
+        audio.pause();
+        audio.currentTime = 0;
+
+        document.querySelectorAll('.vinyl.spin').forEach(v => v.classList.remove('spin'));
+
         const popup = document.getElementById(`popup-${id}`);
         if (popup) {
             popup.classList.remove("show");
-            popup.style.display = "none"; // ✨ asigură ascunderea
+            popup.style.display = "none";
         }
+
+        const extraBtn = document.getElementById(`extra-btn-${id}`);
+        if (extraBtn) {
+            extraBtn.classList.remove("visible");
+        }
+
         currentOpenId = null;
         return;
     }
-    
 
-    // Reset toate albumele
+    // OPEN if not already opened or opening different album
     albums.forEach(album => {
         album.style.display = 'block';
         const vinyl = album.querySelector('.vinyl');
         vinyl.style.left = '0';
         vinyl.classList.remove('spin');
-        album.classList.remove('active-vinyl');  // ✨ eliminăm transformările vechi
-
+        album.classList.remove('active-vinyl');
     });
 
-    // Pune discul în centru și pornește animația
     clicked.style.order = '-1';
     vinyl.style.left = '50%';
-    vinyl.classList.add('spin');
-    clicked.classList.add('active-vinyl'); 
+    clicked.classList.add('active-vinyl');
 
-    // Afișează doar discul activ și ascunde restul DUPĂ ce s-a centrat
-   
-        albums.forEach(album => {
-            if (album !== clicked) {
-                album.style.display = 'none';
-            }
-        });
+    albums.forEach(album => {
+        if (album !== clicked) {
+            album.style.display = 'none';
+        }
+    });
+
+    if (buyBtn) {
+        buyBtn.style.display = "none";
+    }
 
     currentOpenId = id;
 
-    // Oprește animația după 10 secunde
     setTimeout(() => {
         vinyl.classList.remove('spin');
     }, 10000);
- 
-     OpenContiner(id); 
 
+    OpenContiner(id);
 }
+
  /*END VINYL */
 
 /*melodii  */
 
+
+
 function OpenContiner(id) {
-    // Închide toate popup-urile
+    // Ascunde toate popup-urile și butoanele extra
+
     document.querySelectorAll('.album-popup').forEach(popup => {
-        popup.classList.remove("show");
-        popup.style.display = "none"; // ✨ forțăm ascunderea
+      popup.classList.remove("show");
+      popup.style.display = "none";
     });
-
-    // Afișează doar popup-ul activ
+  
+    document.querySelectorAll('.vinyl-extra-btn').forEach(btn => {
+      btn.style.display = "none";
+    });
+  
+    // Arată doar popup-ul și butonul extra pentru discul activ
     const popup = document.getElementById(`popup-${id}`);
-    if (popup) {
-        popup.style.display = "flex"; // ✨ forțăm afișarea
-        popup.classList.add("show");
-    }
-}
+    const extraBtn = document.getElementById(`extra-btn-${id}`);
+    const buyBtn = document.getElementById(`buy-album-${id}`);
 
+    if (buyBtn) {
+        buyBtn.style.display = "block";
+    }
+    if (popup) {
+      popup.style.display = "block";
+      popup.classList.add("show");
+    }
+  
+    if (extraBtn) {
+      extraBtn.classList.add("visible");
+    }
+  }
+  
 
 function closeAlbumPopup(id) {
     const popup = document.getElementById(`popup-${id}`);
@@ -172,38 +205,39 @@ function closeAlbumPopup(id) {
 
 function playTrack(src, vinylId) {
     const audio = document.getElementById('dynamic-player');
-    const vinyl = document.getElementById(`${vinylId}`);
 
-    if (!audio || !vinyl) {
-        console.error('Audio sau vinil lipsă!');
+    // Oprire muzică și animație anterioară
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = src;
+    audio.load();
+
+    // Oprește orice disc care se învârte
+    document.querySelectorAll('.vinyl.spin').forEach(v => v.classList.remove('spin'));
+
+    // Obține discul curent
+    const vinyl = document.getElementById(`${vinylId}`);
+    if (!vinyl) {
+        console.error('Vinilul nu a fost găsit!');
         return;
     }
 
-    audio.pause(); // oprim orice redare anterioară
-    audio.src = src;
-    audio.currentTime = 0;
-    audio.volume = 1.0;
+    // Pornește redarea
+    audio.play().then(() => {
+        vinyl.classList.add('spin');
+    }).catch(err => {
+        console.error('Redarea audio a eșuat:', err);
+    });
 
-    audio.play().catch(e => console.error("Eroare la redare:", e));
-
-    vinyl.classList.add('spin');
-
-    setTimeout(() => {
-        audio.pause();
+    // Când se termină piesa, oprește discul
+    audio.onended = () => {
         vinyl.classList.remove('spin');
-    }, 15000);
+    };
 }
-/*final melodii */
-    
-
-
-
-
 
 
 
 /*final melodii */
-    
 
 
 function profilepopup() {
@@ -266,6 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
       lastLetter.addEventListener("animationend", () => {
         // Optional small delay
         setTimeout(() => {
+            document.getElementById("footer").style.display = "block";
             document.getElementById("main-site").style.display = "block";
           document.getElementById("main-site").scrollIntoView({ behavior: "smooth" });
         }, 1000); 
@@ -283,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const mainSite = document.getElementById('main-site');
 
     if (sessionStorage.getItem('welcomeSeen') === 'true') {
+        document.getElementById('footer').style.display = "block";
         welcomeScreen.style.display = 'none';
         mainSite.style.display = 'block';
         observeAlbums(); // 👈 adaugă aici
@@ -326,9 +362,70 @@ function observeAlbums() {
 }
 
 
-// === CART FUNCTIONS ===
-function toggleCart() {
-    const modal = document.getElementById("cart-modal");
-    modal.style.display = modal.style.display === "block" ? "none" : "block";
+let speechEnabled = false;
+
+function toggleSpeech() {
+  speechEnabled = !speechEnabled;
+  alert("Accessibility " + (speechEnabled ? "enabled" : "disabled"));
 }
 
+function speak(text) {
+  const synth = window.speechSynthesis;
+  if (!synth) return;
+  synth.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+  synth.speak(utterance);
+}
+function toggleCart() {
+    const cartModal = document.getElementById('cart-modal');
+    cartModal.style.display = (cartModal.style.display === 'block') ? 'none' : 'block';
+}
+function describeElement(el) {
+  if (!el) return;
+  const tag = el.tagName.toLowerCase();
+  let description = "";
+
+  if (tag === "img") description = "Image";
+  else if (tag === "button") description = "Button: " + (el.textContent.trim() || "unnamed");
+  else if (tag === "a") description = "Link: " + (el.textContent.trim() || "link");
+  else if (el.hasAttribute("data-accessible")) {
+    description = el.getAttribute("data-accessible");
+  } else if (el.hasAttribute("aria-label")) {
+    description = el.getAttribute("aria-label");
+  }
+  
+  else if (tag.startsWith("h")) description = "Heading";
+  else if (tag === "input") description = "Input field";
+  else if (el.getAttribute("role")) description = "Role: " + el.getAttribute("role");
+
+  if (description) speak(description);
+}
+
+document.addEventListener("mouseover", (e) => {
+  if (speechEnabled) describeElement(e.target);
+});
+
+function addAlbumToCart(id, name, price) {
+    const album = {
+        id: `album-${id}`, // prefix to avoid ID collision with fashion
+        name,
+        price: parseFloat(price),
+    };
+    addToCartGood(album);
+}
+
+function toggleCart() {
+    const cartModal = document.getElementById("cart-modal");
+    cartModal.classList.toggle("show");
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.classList.contains('vinyl')) {
+        const audio = document.getElementById('dynamic-player');
+        if (!audio.paused) {
+            audio.pause();
+            audio.currentTime = 0;
+            e.target.classList.remove('spin');
+        }
+    }
+});

@@ -1,4 +1,4 @@
-const cart1 = JSON.parse(localStorage.getItem("sharedCart")) || [];
+cart1 = JSON.parse(localStorage.getItem("sharedCart")) || [];
 
 function saveCart() {
     localStorage.setItem("sharedCart", JSON.stringify(cart1));
@@ -18,13 +18,15 @@ function addToCartGood(product) {
 
 function removeOneFromCart(index) {
     if (cart1[index].quantity > 1) {
-        cart1[index].quantity--;
+      cart1[index].quantity--;
     } else {
-        cart1.splice(index, 1);
+      cart1.splice(index, 1); // remove the whole item
     }
+  
     saveCart();
-    updateCartDisplay();
-}
+    updateCartDisplay(); // must be called AFTER cart1 is updated
+  }
+
 
 function addOneToCart(index) {
     cart1[index].quantity++;
@@ -33,49 +35,45 @@ function addOneToCart(index) {
 }
 
 function updateCartDisplay() {
-    const cartItems = document.getElementById('cart-items');
-    const cartCount = document.getElementById('cart-count');
-    const cartTotal = document.getElementById('cart-total');
+  const cartItems = document.getElementById('cart-items');
+  const cartCount = document.getElementById('cart-count');
+  const cartTotal = document.getElementById('cart-total');
 
-    if (!cartItems || !cartCount || !cartTotal) return;
+  if (!cartItems || !cartCount || !cartTotal) return;
 
-    cartItems.innerHTML = '';
-    let total = 0;
+  cartItems.innerHTML = '';
+  let total = 0;
 
-    if (cart1.length === 0) {
-        cartItems.innerHTML = '<li>No items in your cart.</li>';
-        cartTotal.textContent = 'Total: $0.00';
-    } else {
-        cart1.forEach((item, index) => {
-            if (!item || typeof item.price !== 'number') {
-                console.warn('Invalid cart item:', item);
-                return;
-            }
-        
-            const cartItem = document.createElement('li');
-            cartItem.textContent = `${item.name} - $${item.price.toFixed(2)} x ${item.quantity}`;
-        
-            const addBtn = document.createElement('button');
-            addBtn.textContent = '+';
-            addBtn.onclick = () => addOneToCart(index);
-        
-            const removeBtn = document.createElement('button');
-            removeBtn.textContent = '-';
-            removeBtn.onclick = () => removeOneFromCart(index);
-        
-            cartItem.appendChild(addBtn);
-            cartItem.appendChild(removeBtn);
-        
-            cartItems.appendChild(cartItem);
-            total += item.price * item.quantity;
-        });
-        
+  if (cart1.length === 0) {
+    cartItems.innerHTML = '<li>No items in your cart.</li>';
+    cartTotal.textContent = `$0.00`; // ✅ force reset total when empty
+    cartCount.textContent = `0`;
+    return; // ✅ stop further processing
+  }
 
-        cartTotal.textContent = `Total: $${total.toFixed(2)}`;
-    }
+  cart1.forEach((item, index) => {
+    const cartItem = document.createElement('li');
+    cartItem.classList.add('cart-item');
 
-    cartCount.textContent = cart1.reduce((sum, item) => sum + item.quantity, 0);
+    cartItem.innerHTML = `
+      <span class="cart-name">${item.name}</span>
+      <div class="cart-controls">
+        <button onclick="removeOneFromCart(${index})" class="cart-btn-small">−</button>
+        <span class="cart-quantity">${item.quantity}</span>
+        <button onclick="addOneToCart(${index})" class="cart-btn-small">+</button>
+      </div>
+      <span class="cart-price">$${(item.price * item.quantity).toFixed(2)}</span>
+    `;
+
+    cartItems.appendChild(cartItem);
+    total += item.price * item.quantity;
+  });
+
+  cartTotal.textContent = `$${total.toFixed(2)}`;
+  cartCount.textContent = cart1.reduce((sum, item) => sum + item.quantity, 0);
 }
+
+
 
 window.addEventListener("load", () => {
     updateCartDisplay();

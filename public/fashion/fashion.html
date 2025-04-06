@@ -3,22 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>Fashion</title>
     <link rel="stylesheet" href="fashion.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <script src="/cart.js"></script>
-
-
+    
+    
+       
 </head>
 <body>
-
+    
     <!-- Header with Fashion title and Filters in line -->
     <header>
+        <div class="blurrer"></div>
         <div class="navbar">
-            <h1>Fashion</h1>
+            <div class="left-section">
+                <button class="top-btn animate-pulse" onclick="goToMusic()">    
+                    <i class="fas fa-music"></i> Music
+                </button>
+            </div>
+    
+            <h1 class="center-title">Fashion</h1>
+    
             <div class="filter-container">
                 <!-- Category Filter -->
                 <div class="filter">
-                    <label for="category">Category</label>
+                    <label class="category" for="category">Category</label>
                     <select id="category" onchange="applyFilters()">
                         <option value="">All Categories</option>
                         <option value="Pants">Pants</option>
@@ -28,7 +39,7 @@
                         <option value="Hoodie">Hoodie</option>
                     </select>
                 </div>
-
+    
                 <!-- Price Filter -->
                 <div class="filter">
                     <label for="price">Price Range</label>
@@ -42,123 +53,126 @@
             </div>
         </div>
     </header>
+    
 
     <!-- Cart Button in Body Section -->
     <div class="cart-container">
-        <button class="cart-btn" onclick="toggleCart()">
-            Cart (<span id="cart-count">0</span> items)
+        <button class="cart-btn" onclick="toggleCart()" title="Your Cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span id="cart-count" class="cart-count-icon">0</span>
         </button>
     </div>
+    
 
     <!-- Product Section -->
     <section class="products">
   
         <!-- Product Cards -->
         <div class="product-card" data-id="1" data-name="Cool Drip Hoodie" data-price="45.00" data-category="Hoodie">
-            <img src="" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/geaca1.jpg" alt="Cool Drip Hoodie" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Cool Drip Hoodie</h3>
-                <p class="description">Stay warm and stylish with this drip hoodie. Perfect for any season!</p>
+                <h3>Hoodie</h3>
+                <p class="description"> "AICI SE POT PUNE DESCRIERI" </p>
                 <p class="price">$45.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="2" data-name="Drip Sneakers" data-price="85.00" data-category="Shoes">
-            <img src="" alt="Drip Sneakers" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/shoes1.jpg" alt="Drip Sneakers" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Drip Sneakers</h3>
-                <p class="description">Sleek and stylish sneakers for every occasion.</p>
+                <h3>Shoes</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$85.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="3" data-name="Luxury Watch" data-price="120.00" data-category="Accessories">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/shirt3.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Chain</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$120.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="4" data-name="Luxury Watch" data-price="130.00" data-category="Pants">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/produs1.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Baggy Pants</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$130.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
-        <div class="product-card" data-id="5" data-name="Luxury Watch" data-price="150.00" data-category="Pants">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+        <div class="product-card" data-id="5" data-name="Luxury Watch" data-price="250.00" data-category="Pants">
+            <img src="/photos/pantaloni1.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Lux Pants</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$150.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="6" data-name="Luxury Watch" data-price="160.00" data-category="Shoes">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/shoes2.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>High Shoes</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$160.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="7" data-name="Luxury Watch" data-price="180.00" data-category="Shoes">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/geaca2.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Confy Shoes</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$180.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="8" data-name="Luxury Watch" data-price="190.00" data-category="T-shirt">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/shirt1.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Best Shirt</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$190.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="9" data-name="Luxury Watch" data-price="210.00" data-category="T-shirt">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/shirt2.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Luxury TShirt</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$210.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="10" data-name="Luxury Watch" data-price="220.00" data-category="Accessories">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/accesori1.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Luxury Bracelet</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$220.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
         </div>
 
         <div class="product-card" data-id="11" data-name="Luxury Watch" data-price="240.00" data-category="Accessories">
-            <img src="" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
+            <img src="/photos/accesori2.jpg" alt="Luxury Watch" class="product-image" onclick="zoomImage(this)">
             <div class="product-info">
-                <h3>Luxury Watch</h3>
-                <p class="description">Elegant and timeless design.</p>
+                <h3>Glasses</h3>
+                <p class="description">"AICI SE POT PUNE DESCRIERI"</p>
                 <p class="price">$240.00</p>
                 <button class="buy-btn" onclick="addToCart(this)">Buy Now</button>
             </div>
@@ -167,14 +181,28 @@
     </section>
 
     <!-- Cart Modal -->
-    <div class="cart-modal" id="cart-modal">
-        <div class="cart-content">
-          <h3>Your Cart</h3>
-          <ul id="cart-items"></ul>
-          <p id="cart-total">Total: $0.00</p>
-          <button class="close-btn" onclick="toggleCart()">Close</button>
-        </div>
+    <!-- 🛒 Cart Modal -->
+<div class="cart-modal" id="cart-modal">
+    <div class="cart-panel">
+      <!-- Header -->
+      <div class="cart-header">
+        <h3>Your Cart</h3>
+        <button class="close-cart" onclick="toggleCart()">&times;</button>
       </div>
+  
+      <!-- Cart Items -->
+      <ul id="cart-items" class="cart-items-container">
+        <!-- Items will be dynamically added here by JS -->
+      </ul>
+  
+      <!-- Footer -->
+      <div class="cart-footer">
+        <p class="cart-total">Total: <span id="cart-total">0.00</span></p>
+        <button class="checkout-btn">Checkout</button>
+      </div>
+    </div>
+  </div>
+  
       
 
     <!-- Zoomed Image Container -->
@@ -184,6 +212,7 @@
     </div>
 
     <footer>
+        <div class="blurrer"></div>
         <div class="footer-content">
             <p>&copy; 2025 CultureDrop Shop. All rights reserved.</p>
         </div>

@@ -18,9 +18,10 @@ function applyFilters() {
 }
 
 function toggleCart() {
-    const cartModal = document.getElementById('cart-modal');
-    cartModal.style.display = (cartModal.style.display === 'block') ? 'none' : 'block';
-}
+    const cartModal = document.getElementById("cart-modal");
+    cartModal.classList.toggle("show");
+  }
+  
 
 function addToCart(button) {
     const card = button.closest('.product-card');
@@ -43,3 +44,19 @@ function closeZoom() {
     const zoomContainer = document.getElementById('zoom-container');
     zoomContainer.style.display = 'none';
 }
+function goToMusic()
+{
+    window.location.href="/";
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+    const body = document.body;
+
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark");
+    }
+    else 
+        body.classList.remove("dark");
+  });
+
+  

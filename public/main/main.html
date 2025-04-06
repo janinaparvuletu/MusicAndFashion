@@ -4,11 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
+        <title>CultureDrop</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
         <link rel="stylesheet" href="main/main.css">
+        <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
         <script src="main/main.js"></script>
         <script src="/cart.js"></script>
         <title>M&F</title>
@@ -66,225 +68,337 @@
 
     <section id="main-site">
       
-        <div class="top-bar">
-           
-            <div class="top-buttons">
-                <button class="top-btn" onclick="goToMusic()">🎵 Music</button>
-                <button class="top-btn" onclick="goToFashion()">👗 Fashion</button>
-            </div>
+      <header>
+        
+        <div class="blurrer"></div>
+        <div class="navbar">
+          <div class="left-section">
+            <button class="top-btn animate-pulse" onclick="goToFashion()">
+              <i class="fa fa-shirt"></i> Fashion</button>
+          </div>
+      
+          <h1 class="center-title">CultureDrop</h1>
+          
             <div class="profile" onclick="profilepopup()"></div>
-
+          </div>
         </div>
+      </header>
        
-            <div class="album-container">
-                <div class="album" onclick="movevinyl(1)">
-                    <div class="vinyl" id="1">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover4.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> Plecat de acasa </p>
-                    </div>
-                </div>
-            
-                <div class="album" onclick="movevinyl(2)">
-                    <div class="vinyl" id="2">
-                        <div class="print"></div>
-                       
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover5.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> Luna Plina </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(3)">
-                    <div class="vinyl" id="3">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover11.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> Live @ Untold 2019 </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(4)">
-                    <div class="vinyl" id="4">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover3.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> Nanelien </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(5)">
-                    <div class="vinyl" id="5">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover9.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> CORDIAL </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(6)">
-                    <div class="vinyl" id="6">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover7.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> L.V. Pattern </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(7)">
-                    <div class="vinyl" id="7">
-                        <div class="print"></div>
-                       
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover8.jpg');"></div>
-                    <div class="denumire-album">
-                      <p> De-ale Mele II </p>
-                    </div>
-                </div>
-                <div class="album" onclick="movevinyl(8)">
-                    <div class="vinyl" id="8">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover6.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> TRAUME ȘI COȘMARURI </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(9)">
-                    <div class="vinyl" id="9">
-                        <div class="print"></div>
-                       
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/Nane.jpg');"></div>
-                    <div class="denumire-album">
-                    <p> Avram </p>
-                </div>
-                </div>
-                <div class="album" onclick="movevinyl(10)">
-                    <div class="vinyl" id="10">
-                        <div class="print"></div>
-                    </div>
-                    <div class="cover" style="background-image: url('/photos/cover10.jpg');"></div>
-                    <div class="denumire-album">
-                        <p> b0@b3 </p>
-                    </div>
-                </div>
-            <!--popup-uri discuri-->
-            </div>
+    
+    
+    </div>
+  </div>
+</header>
+ 
+<div class="album-container">
+  <div class="album" onclick="movevinyl(event, 1)" >
+    <div class="buy">
+    <div class="group">
+      <div class="cover" style="background-image: url('/photos/cover4.jpg');"></div>
+        <div class="vinyl" id="1">
+            <div class="print"></div>
+        </div>
+      <p aria-label="Plecat de acasa Album"> Plecat de acasa </p>
+    </div>
+    <div class="buy-album-container" id="buy-album-1">
+      <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(1, 'Plecat de acasa', 14.99)">
+        <i class="fas fa-cart-plus"></i> Buy Album
+      </button>
+    </div>
+  </div>
 
+          <div class="album-popup" id="popup-1">
+              <h2>Plecat de acasă</h2>
+            <p>Primul album lansat de Nane în 2010. Atmosferă nostalgic-urbană.</p>    
+            <button class="album-popup-btn" onclick="event.stopPropagation();playTrack('main/Music/Plecat_de_acasa/nane-911-videoclip-oficial_VKBTwCwI.mp3', 1)">911</button>
+            <button class="album-popup-btn" onclick="event.stopPropagation(); playTrack('main/Music/Plecat_de_acasa/nane-feat-tranda-atat-de-simplu-videoclip-oficial_xnIsyKES.mp3', 1)">Atat de simplu</button>
+          </div>          
+  </div>
+  
 
-            <div class="album-popup" id="popup-1">
-                <h2>Plecat de acasă</h2>
-                <p>Primul album lansat de Nane în 2010. Atmosferă nostalgic-urbană.</p>
-              </div>
+  <div class="album" onclick="movevinyl(event, 2)">
+    <div class="buy">
+    <div class="group">
+        <div class="cover" style="background-image: url('/photos/cover5.jpg');"></div>
+          <div class="vinyl" id="2">
+              <div class="print"></div>
+          </div>
+      <p aria-label="Luna Plina Album"> Luna Plina </p>
+    </div>
+        <div class="buy-album-container" id="buy-album-2">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(2, 'Luna Plina', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+        
+    </div>
+    
 
-              <div class="album-popup" id="popup-2">
-                <h2>Luna Plină</h2>
-                <p>Un mix misterios de trap și hip-hop, cu versuri visătoare.</p>
-              </div>
-              
-              <div class="album-popup" id="popup-3">
-                <h2>Live @ Untold 2019</h2>
-                <p>Înregistrare live. Energie maximă și conexiune cu publicul.</p>
-              </div>
+      <div class="album-popup" id="popup-2">
+        <h2>Luna Plina</h2>
+        <p>Un mix misterios de trap si hip-hop, cu versuri visatoare.</p>
+      </div>
+  </div>
 
-              <div class="album-popup" id="popup-4">
-                <h2>Nanelien</h2>
-                <p>Un album conceptual cu vibe-uri SF, unde Nane își explorează stilul unic.</p>
-              </div>
-              
-              <div class="album-popup" id="popup-5">
-                <h2>CORDIAL</h2>
-                <p>Un proiect sincer și personal, cu teme legate de prietenie, trădare și maturizare.</p>
-              </div>
-              
-              <div class="album-popup" id="popup-6">
-                <h2>L.V. Pattern</h2>
-                <p>Inspirat din lumea fashion-ului, albumul combină beat-uri elegante cu mesaje criptice.</p>
-              </div>
-              
-              <div class="album-popup" id="popup-7">
-                <h2>De-ale Mele II</h2>
-                <p>Continuarea naturală a primului „De-ale Mele”, cu un ton mai matur și introspectiv.</p>
-              </div>
-              
-              <div class="album-popup" id="popup-8">
-                <h2>TRAUME ȘI COȘMARURI</h2>
-                <p>Un album întunecat și visceral, care explorează lupta interioară și traumele nevindecate.</p>
-              </div>
-            
-              <div class="album-popup" id="popup-9">
-                <h2>Avram</h2>
-                <p>Albumul conține mai multe piese:</p>
-              
-                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/nane-bmv-video-oficial_gkHb1L7i.mp3', 9)">BMW</button>
-                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/am-putea-fi-feat-alduts-sherdley_fhjR7urw.mp3', 9)">Am putea fi</button>
-                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/spune-mi_J1giaM9M.mp3', 9)">Spune-mi</button>
-                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/lvl-up_mhuyrQB9.mp3', 9)">LVL-UP</button>
-                <button class="album-popup-btn" onclick="playTrack('main/Music/Avram/tututu_s5i8oCKI.mp3', 9)">TUTUTU</button>
-              </div>
-              
-              <div class="album-popup" id="popup-10">
-                <h2>b0@b3</h2>
-                <p>Cel mai experimental album al lui Nane, cu influențe digitale și sound-uri cyberpunk.</p>
-              </div>
-              
+  <div class="album" onclick="movevinyl(event, 3)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover11.jpg');"></div>
+      <div class="vinyl" id="3">
+          <div class="print"></div>
+      </div>
+      <p aria-label="Live @ Untold 2019 Album"> Live @ Untold 2019 </p>
+    </div>
+      <div class="buy-album-container" id="buy-album-3">
+        <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(3, 'Live @ Untold 2019', 14.99)">
+          <i class="fas fa-cart-plus"></i> Buy Album
+        </button>
+      </div>
+    </div>
+        
+        <div class="album-popup" id="popup-3">
+          <h2>Live @ Untold 2019</h2>
+          <p>Inregistrare live. Energie maxima si conexiune cu publicul.</p>
+
+       
+
+      </div>
+  </div>
+  <div class="album" onclick="movevinyl(event, 4)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover3.jpg');"></div>
+      <div class="vinyl" id="4">
+          <div class="print"></div>
+      </div>
+        <p aria-label="Nanelien Album"> Nanelien </p>
+    </div>
+        <div class="buy-album-container" id="buy-album-4">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(4, 'Nanelien', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+      </div>
+      <div class="album-popup" id="popup-4">
+        <h2>Nanelien</h2>
+        <p>Un album conceptual cu vibe-uri SF, unde Nane isi exploreaza stilul unic.</p>
         
 
-              <div class="profile-popup-overlay" id="profile-popup">
-                <div class="popup-card">
-                  <button class="close-btn-profile" onclick="closePopup()">×</button>
-                  
-                  <img class="popup-avatar" src="/photos/profile.jpeg" alt="Profile picture">
-                  
-                  <h3 class="popup-name">Guest</h3>
-                  <p class="popup-email">guest@culturedrop.com</p>
-              
-                  <div class="theme-toggle-wrapper">
-                    <input type="checkbox" class="checkbox" id="checkbox">
-                    <label for="checkbox" class="checkbox-label" title="Switch theme">
-                      <i class="fas fa-moon"></i>
-                      <i class="fas fa-sun"></i>
-                      <span class="ball"></span>
-                    </label>
-                  </div>
-              
-                  <button class="sign-up-btn">Sign Up</button>
-                </div>
-              </div>
+      </div>
+  </div>
+  <div class="album" onclick="movevinyl(event, 5)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover9.jpg');"></div>
+      <div class="vinyl" id="5">
+          <div class="print"></div>
+      </div>
+      
+        <p aria-label="CORDIAL Album"> CORDIAL </p>
+        </div>
+        <div class="buy-album-container" id="buy-album-5">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(5, 'CORDIAL', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+    </div>
+        <div class="album-popup" id="popup-5">
+          <h2>CORDIAL</h2>
+          <p>Un proiect sincer si personal, cu teme legate de prietenie, tradare si maturizare.</p>
+        </div>
 
-              <div class="cart-container">
-                <button class="cart-btn" onclick="toggleCart()">
-                    Cart (<span id="cart-count">0</span> items)
-                </button>
+        
+
+  </div>
+  <div class="album" onclick="movevinyl(event, 6)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover7.jpg');"></div>
+      <div class="vinyl" id="6">
+          <div class="print"></div>
+      </div>
+        <p aria-label="L.V. Pattern Album"> L.V. Pattern </p>
+      </div>
+
+        <div class="buy-album-container" id="buy-album-6">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(6, 'L.V. Pattern', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+      </div>
+    </div>
+        <div class="album-popup" id="popup-6">
+          <h2>L.V. Pattern</h2>
+          <p>Inspirat din lumea fashion-ului, albumul combina beat-uri elegante cu mesaje criptice.</p>
+        </div>
+  </div>
+
+  <div class="album" onclick="movevinyl(event, 7)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover8.jpg');"></div>
+      <div class="vinyl" id="7">
+          <div class="print"></div>
+        </div>
+        <p aria-label="De-ale Mele II Album"> De-ale Mele II </p>
+    </div>
+          <div class="buy-album-container" id="buy-album-7">
+            <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(7, 'De-ale Mele II ', 14.99)">
+              <i class="fas fa-cart-plus"></i> Buy Album
+            </button>
+          </div>
+
+      </div>
+        <div class="album-popup" id="popup-7">
+          <h2>De-ale Mele II</h2>
+          <p>Continuarea naturala a primului 'De-ale Mele', cu un ton mai matur si introspectiv.</p>
+        </div>
+  </div>
+  <div class="album" onclick="movevinyl(event, 8)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover6.jpg');"></div>
+      <div class="vinyl" id="8">
+          <div class="print"></div>
+      </div>
+        <p aria-label="TRAUME ȘI COȘMARURI  Album"> TRAUME SI COSMARURI </p>
+      </div>
+        <div class="buy-album-container" id="buy-album-8">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(8, 'TRAUME ȘI COȘMARURI', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+    </div>
+        <div class="album-popup" id="popup-8">
+          <h2>TRAUME SI COSMARURI</h2>
+          <p>Un album intunecat si visceral, care exploreaza lupta interioara si traumele nevindecate.</p>
+        </div>
+  </div>
+  <div class="album" onclick="movevinyl(event, 9)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/Nane.jpg');"></div>
+      <div class="vinyl" id="9">
+          <div class="print"></div>   
+      </div>
+        <p aria-label=" Avram Album"> Avram </p>
+    </div>
+        <div class="buy-album-container" id="buy-album-9">
+          <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(9, 'Avram', 14.99)">
+            <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+
+      </div>
+        <div class="album-popup" id="popup-9">
+          <h2>Avram</h2>
+          <p>Albumul contine mai multe piese:</p>
+        
+          <button class="album-popup-btn" onclick="event.stopPropagation(); playTrack('main/Music/Avram/nane-bmv-video-oficial_gkHb1L7i.mp3', 9)">BMW</button>
+          <button class="album-popup-btn" onclick="event.stopPropagation(); playTrack('main/Music/Avram/am-putea-fi-feat-alduts-sherdley_fhjR7urw.mp3', 9)">Am putea fi</button>
+          <button class="album-popup-btn" onclick="event.stopPropagation(); playTrack('main/Music/Avram/spune-mi_J1giaM9M.mp3', 9)">Spune-mi</button>
+          <button class="album-popup-btn" onclick="event.stopPropagation(); playTrack('main/Music/Avram/lvl-up_mhuyrQB9.mp3', 9)">LVL-UP</button>
+          <button class="album-popup-btn" onclick="event.stopPropagation();playTrack('main/Music/Avram/tututu_s5i8oCKI.mp3', 9)">TUTUTU</button>
+          
+        </div> 
+  </div>
+
+  <div class="album" onclick="movevinyl(event, 10)">
+    <div class="buy">
+    <div class="group">
+    <div class="cover" style="background-image: url('/photos/cover10.jpg');"></div>
+    <div class="vinyl" id="10">
+        <div class="print"></div>
+    </div>
+        <p  aria-label=" b0@b3 Album "> b0@b3 </p>
+    </div>`
+        <div class="buy-album-container" id="buy-album-10">
+        <button class="buy-album-btn" onclick="event.stopPropagation(); addAlbumToCart(10, 'b0@b3 ', 14.99)">
+              <i class="fas fa-cart-plus"></i> Buy Album
+          </button>
+        </div>
+
+      </div>
+        <div class="album-popup" id="popup-10">
+          <h2>b0@b3</h2>
+          <p>Un album intunecat si visceral, care exploreaza lupta interioara si traumele nevindecate.</p>
+        </div>
+</div> 
+</div>
+<div class="cart-container">
+  <button class="cart-btn" onclick="toggleCart()" title="Your Cart">
+    <i class="fas fa-shopping-cart"></i>
+    <span id="cart-count" class="cart-count-icon">0</span>
+  </button>
+</div>
+
+
+      <div class="profile-popup-overlay" id="profile-popup">
+        <div class="popup-card">
+          <button class="close-btn-profile" onclick="closePopup()">×</button>
+          
+          <img class="popup-avatar" src="/photos/profile.jpeg" alt="Profile picture">
+          
+          <h3 class="popup-name">Guest</h3>
+          <p class="popup-email">guest@culturedrop.com</p>
+      
+          <div class="theme-accessibility">
+            <div class="theme-toggle-wrapper">
+              <input type="checkbox" class="checkbox" id="checkbox">
+              <label for="checkbox" class="checkbox-label" title="Switch theme">
+                <i class="fas fa-moon"></i>
+                <i class="fas fa-sun"></i>
+                <span class="ball"></span>
+              </label>
             </div>
-            
-            <div class="cart-modal" id="cart-modal">
-              <div class="cart-content">
-                <h3>Your Cart</h3>
-                <ul id="cart-items"></ul>
-                <p id="cart-total">Total: $0.00</p>
-                <button class="close-btn" onclick="toggleCart()">Close</button>
-              </div>
-            </div>
-            
-                 
-              <div class="footer-spacer"></div>
+          
+            <button class="accessibility-icon" onclick="toggleSpeech()" title="Accessibility">
+              <i class="fas fa-universal-access"></i>
+
+            </button>
+          </div>
+          
+      
+          <button class="sign-up-btn">Sign Up</button>
+        </div>
+      </div>
+      
+    
+    <div class="cart-modal" id="cart-modal">
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+
+    <div class="cart-items-container" id="cart-items">
+      <!-- Items go here dynamically -->
+    </div>
+
+    <div class="cart-footer">
+      <p class="cart-total">Total: <span id="cart-total">0.00</span></p>
+      <button class="checkout-btn">Checkout</button>
+    </div>
+  </div>
+</div>
+
+               
+              
     </section>
     <audio id="dynamic-player"></audio>
     <script src="/cart.js"></script>
-    </body>
+
     <footer id="footer">
+      <div class="blurrer"></div>
+      
+      <div class="footer-content">
+          <span onclick="rediraboutus()" class="about-contact"> AboutUs</span>
+          <span class="about-contact"> | </span>
+          <span onclick="redircontact()" class="about-contact"> Contact </span>
+      </div>
 
-        <div class="footer-content">
-            <span onclick="rediraboutus()" class="about-contact"> AboutUs</span>
-            <span class="about-contact"> | </span>
-            <span onclick="redircontact()" class="about-contact"> Contact </span>
-        </div>
-
-    </footer>
+  </footer>
+    </body>
+    
     
       
 </html>

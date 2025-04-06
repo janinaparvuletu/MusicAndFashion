@@ -10,7 +10,7 @@
 .about-container {
   text-align: center;
   max-width: 800px;
-  background-color: #f4f4f4;
+  background-color: rgb(214, 163, 96);
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
@@ -65,4 +65,16 @@
 .team-member a:hover .image-minimized {
   opacity: 0.8;
   transition: opacity 0.3s ease;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: rgb(227, 140, 41);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

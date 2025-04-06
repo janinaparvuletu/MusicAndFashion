@@ -42,7 +42,7 @@ body {
 }
 
 .top-btn {
-    padding: 8px 16px;
+    padding: 14px 25px;
     font-size: 1rem;
     font-weight: bold;
     border: none;
@@ -54,12 +54,26 @@ body {
     transition: all 0.3s ease;
     font-family: 'Montserrat', sans-serif;
 }
-
-.top-btn:hover {
-    transform: translateY(-2px);
-    background: linear-gradient(145deg, #d4b799, #dcd6cc);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+@keyframes popGlow {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.2);
+  }
 }
+
+.top-btn.animate-pulse {
+  animation: popGlow 1.5s ease-in-out infinite;
+}
+
+
 .popup-name {
     font-size: 1.5rem;
     margin: 0;
@@ -71,8 +85,8 @@ body {
     margin-bottom: 15px;
   }
 .profile {
-    width: 70px;
-    height: 70px;
+    width: 80px !important; 
+    height: 80px !important;
     background-image: url('/photos/profile.jpeg');
     background-size: cover;
     background-position: center;
@@ -80,8 +94,6 @@ body {
     border: 2px solid brown;
     cursor: pointer;
     transition: transform 0.3s ease;
-
-    /* 🔥 fix pentru aliniere dreapta în top-bar */
     margin-left: auto;
     
 }
@@ -191,60 +203,53 @@ body {
 
 }
 
-.footer-spacer {
-    height: 40px; /* cât are și footerul sau puțin mai mult */
-    width: 100%;
+footer {
+  display: none;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px 20px;
+  color: white;
+  z-index: 2;
 }
 
-
-#footer {
-    display: flex;
-    position: fixed;
-    width: 100%;
-    height: 50px;
-    justify-content: center;
-    text-align: center;
-    align-items: center;
-    overflow: hidden;
-    color: white;
-    font-weight: bold;
-    box-sizing: border-box;
-    bottom: 0;
-
+footer .blurrer {
+  position: absolute;
+  inset: 0;
+  background-image: url('/photos/light_wall.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
 }
 
-#footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: url('/photos/light_wall.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
+.footer-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 0;
 }
 
-#footer .footer-content {
-    position: relative;
+.footer-content .about-contact {
+  cursor: pointer;
+  color: black;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
+
+.footer-content .about-contact:hover {
+  color: #333;
+  transform: scale(1.05);
+}
+
 
 .main-content {
     flex-grow: 1;
 }
 
-#footer .background-blur {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: url('/photos/background_top_bar.jpg'); /* sau orice imagine ai folosit sus */
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
-}
 
 .container {
     max-width: 600px;
@@ -281,6 +286,17 @@ body {
     
   }
  
+  .theme-accessibility {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* space between buttons */
+    margin-top: 20px;
+  }
+  .theme-toggle-wrapper,
+.accessibility-icon {
+  flex-shrink: 0;
+}
 
 
 /*vinil*/
@@ -311,21 +327,57 @@ body {
     height: 190px;
     transition: transform 0.8s ease, box-shadow 0.3s ease;
     color: white;
-    opacity: 0;
+    opacity: 1;
     transform: translateY(50px);
 }
 .album.visible {
     opacity: 1;
     transform: translateY(0);
 }
+.group
+{
+  will-change: transform;
 
-.album:hover {
-    transform: scale(1.07) translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
+.group:hover 
+{
+  transform: scale(1.07) translateY(-5px);
+  transform-origin: center center;
+
+}
+.group {
+  transition: transform 0.4s ease;
+}
+
+
+.buy-album-container {
+  display: none;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.buy-album-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.buy-album-btn:hover {
+  background-color: #2ecc71;
+}
+
 .album p
 {
-    color: black;
+    text-align: center;
+    color: #000;
+    font-family: 'Copperplate', 'Copperplate Gothic Light', fantasy;
+    font-weight: bold;
 }
 .cover {
 	position: relative;
@@ -338,7 +390,8 @@ body {
 	            inset 0 0 10px 5px rgba(255,255,255,0.2),
 			    inset 0 0 4px 2px rgba(0,0,0,0.2);
 	border-radius: 4px;
-	cursor: pointer;   
+	cursor: pointer;  
+  z-index: 2; 
     
 }
 .cover::before {
@@ -378,9 +431,10 @@ body {
 	background-position: center;
 	border-radius: 50%;
     transition: left 0.8s ease-in-out;
+    z-index: 1;
 }
 .vinyl.spin {
-	animation: spinThat 10s linear forwards;
+	animation: spinThat 10s linear infinite;
 }
 .vinyl::before {
 	top: 2.5%;
@@ -394,6 +448,25 @@ body {
 	opacity: 0.3;
 	content: '';
 }
+
+.vinyl-extra-btn {
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  justify-content: center;
+  margin-top: 15px;
+  transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.vinyl-extra-btn.visible {
+  visibility: visible;
+  opacity: 1;
+  max-height: 100px; /* suficient spațiu pentru un buton */
+}
+
+
+
 .print {
 	position: absolute;
 	top: 33%;
@@ -443,57 +516,48 @@ body {
     display: none;
 }
 
-.album-popup {
-    position: fixed;
-    height: 200px;
-    max-height: 500px;
-    width:600px;
-    max-width: 1000px;
-    top: 55%;
-    left: 60%;
-    transform: translate(-50%, -40%) scale(0.95);
-    background: white;
-    color: black;
-    padding: 25px;
-    border-radius: 10px;
-    width: 400px;
-    max-width: 90vw;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
 
-    background-color: rgba(255, 255, 255, 0.15); /* mai transparent */
-    backdrop-filter: blur(10px);                /* estompează fundalul */
-    -webkit-backdrop-filter: blur(10px);        /* pentru Safari */
-    border: 1px solid rgba(255, 255, 255, 0.2);  /* contur subtil */
+.album-popup {
+  position: absolute;
+  top: 0;
+  left: 180%;
+  margin-left: 20px;
+  width: 300px;
+  max-width: 90vw;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(188, 183, 183, 0.53);
+  border-radius: 10px;
+  padding: 20px;
+  color: black;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
+
 
 .album-popup.show {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 
 
-@media (max-width: 600px) {
-    .album-popup {
-      position: static !important;
-      transform: none !important;
-      width: 90vw;
-      margin: 10px auto;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-  
-    .album-popup.show {
-      display: block !important; /* suprascrie doar pe mobil */
-    }
+@media (max-width: 768px) {
+  .album-popup {
+    position: static !important;
+    margin-left: 0 !important;
+    margin-top: 10px;
+    width: 90%;
+    transform: none !important;
   }
+}
+
   @media (min-width: 1024px) {
     .album-popup {
       width: 600px;
@@ -503,6 +567,7 @@ body {
   }
 
   .album-popup-btn {
+    position: relative;
     width: 90%;
     padding: 8px 0; /* mai subtire pe inaltime */
     background-color: rgba(255, 255, 255, 0.3);
@@ -529,36 +594,83 @@ body {
   }
 /*melofii final*/
 
+/* HEADER STYLES FROM FASHION WITH .blurrer DIV */
 
-
-.top-bar {
-    position: relative;
-    width: 100%;    
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-sizing: border-box;
-    overflow: hidden;
-    color: white;
+header {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 20px 20px;
+  color: white;
+  z-index: 2;
 }
 
-.top-bar::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-image: url('/photos/light_wall.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: blur(5px);
+header .blurrer {
+  position: absolute;
+  inset: 0;
+  background-image: url('/photos/light_wall.jpg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(5px);
+  z-index: -1;
 }
 
-.top-bar * {
-    position: relative;
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.left-section, .right-section {
+  display: flex;
+  align-items: center;
+}
+
+.center-title {
+  font-size: clamp(24px, 5vw, 36px); /* adaptiv între 24px și 36px */
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; 
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #111;
+  animation: slideFadeIn 2s ease forwards;
+  opacity: 0;
+  margin: 0;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@keyframes slideFadeIn {
+  0% {
+    transform: translateY(-30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+
+
+.profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  margin-left: 20px;
 }
 
 
@@ -630,32 +742,28 @@ body.dark .popup-card {
 body.dark .popup-name,
 body.dark .popup-email,
 body.dark .about-contact,
-body.dark .album p
-{
+body.dark .album p,
+body.dark .center-title,
+body.dark .cart-content,
+body.dark .cart-content h3,
+body.dark .cart-content li{
   color: #fff;
 }
 
 body.dark #main-site,
-body.dark .top-bar,
-body.dark #footer {
+body.dark header .blurrer ,
+body.dark footer .blurrer {
   background-image: url('/photos/wood.jpeg') !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
-
-/* În cazul în care ai pseudo-elemente ::before pe top-bar sau footer,
- adaugă și aceste linii pentru a anula stilurile implicite */
-body.dark .top-bar::before,
-body.dark #footer::before {
-  background-image: url('/photos/wood.jpeg') !important;
-  background-size: cover;
-  background-position: center;
-  filter: blur(5px);
+body.dark .cart-content {
+  background-color: #2f2f2f;
 }
 
 
-* Cart Button */
+/* Cart Button */
 .cart-container {
     position: fixed;
     bottom: 20px;
@@ -663,42 +771,30 @@ body.dark #footer::before {
     z-index: 1000;
 }
 
+
 .cart-btn {
-    background-color: green;
-    color: white;
-    padding: 12px 25px;
-    font-size: 16px;
-    border-radius: 30px;
-    transition: background-color 0.3s ease;
+  background-color: green;
+  color: white;
+  padding: 12px 20px;
+  font-size: 20px;
+  border-radius: 30px;
+  transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 .cart-btn:hover {
-    background-color: #2980b9;
+  background-color: #2980b9;
 }
 
-/* Cart Modal */
-.cart-modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.cart-count-icon {
+  font-size: 14px;
 }
 
-.cart-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    width: 80%;
-    max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
+
 
 .cart-content h3 {
     margin-bottom: 20px;
@@ -721,57 +817,88 @@ body.dark #footer::before {
   z-index: 1000;
 }
 
-.cart-btn {
-  background-color: green;
+
+
+.cart-modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  display: none; /* Start hidden */
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  z-index: 10000;
+}
+
+.cart-modal.show {
+  display: block; /* Show modal when .show is added */
+}
+
+.cart-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  max-width: 90%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+}
+
+.cart-modal.show .cart-panel {
+  transform: translateX(0); /* Slide in */
+}
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.close-cart {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+  color: #333;
+}
+
+
+
+.cart-footer {
+  padding: 20px;
+  border-top: 1px solid #ddd;
+  background: #f9f9f9;
+}
+
+.cart-total {
+  font-size: 18px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #27ae60;
   color: white;
-  padding: 12px 25px;
+  border: none;
+  border-radius: 25px;
   font-size: 16px;
-  border-radius: 30px;
+  cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.cart-btn:hover {
-  background-color: #2980b9;
+.checkout-btn:hover {
+  background-color: #2ecc71;
 }
 
-/* Cart Modal */
-.cart-modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.cart-content {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 80%;
-  max-width: 500px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.cart-content h3 {
-  margin-bottom: 20px;
-}
-
-#cart-items {
-  list-style: none;
-  padding: 0;
-  margin-bottom: 20px;
-}
-
-#cart-items li {
-  margin: 10px 0;
-  font-size: 16px;
-}
 
 
 /* welcome animation*/
@@ -1439,3 +1566,57 @@ body.dark #footer::before {
       opacity: 0;
     }
   }
+  /* Main container for each item */
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+}
+
+/* Item name */
+.cart-name {
+  flex: 1;
+  font-weight: 500;
+  color: #222;
+}
+
+/* Controls wrapper */
+.cart-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* + / - buttons */
+.cart-btn-small {
+  background-color: #ddd;
+  border: none;
+  padding: 4px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.cart-btn-small:hover {
+  background-color: #bbb;
+}
+
+/* Quantity display */
+.cart-quantity {
+  font-weight: bold;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* Item total price */
+.cart-price {
+  color: #e74c3c;
+  font-weight: 600;
+}

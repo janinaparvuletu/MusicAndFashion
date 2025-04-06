@@ -1,50 +1,59 @@
-/* General reset */
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Set the full height for the page */
 html, body {
     height: 100%;
     font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, rgb(227, 140, 41), rgb(214, 163, 96));
+    background-size: 400% 400%;
+    animation: smoothFlow 16s ease infinite;
+    color: #3b1e0b;
 }
 
-/* Contact Section */
+@keyframes smoothFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Layout */
 .contact-section {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
-    color: white;
     padding: 20px;
 }
 
-/* Contact Container */
+/* Container */
 .contact-container {
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    background-color: rgba(255, 248, 240, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     padding: 40px;
     width: 100%;
     max-width: 600px;
     text-align: center;
+    backdrop-filter: blur(4px);
 }
 
 .contact-container h1 {
     font-size: 32px;
     margin-bottom: 20px;
-    color: #333;
+    color: rgb(227, 140, 41);
 }
 
 .contact-container p {
     font-size: 18px;
     margin-bottom: 40px;
+    color: #6b3c1a;
 }
 
-/* Form styling */
+/* Form */
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -59,49 +68,51 @@ html, body {
 
 .form-group label {
     font-size: 16px;
-    color: #333;
+    color: #4d2a10;
     text-align: left;
 }
 
 input, textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #ddd;
+    border: 2px solid rgb(214, 163, 96);
     border-radius: 8px;
     font-size: 16px;
-    color: #333;
+    background-color: #fffaf5;
+    color: #3a1d0a;
     transition: border-color 0.3s ease;
 }
 
 input:focus, textarea:focus {
-    border-color: #0072ff;
-    box-shadow: 0 0 8px rgba(0, 114, 255, 0.5);
+    border-color: rgb(227, 140, 41);
+    box-shadow: 0 0 8px rgba(227, 140, 41, 0.4);
     outline: none;
 }
 
-/* Button Styling */
+/* Buttons */
 button {
     padding: 14px;
-    background-color: #0072ff;
-    color: white;
+    background-color: rgb(227, 140, 41);
+    color: #fff9f3;
     border: none;
     border-radius: 8px;
     font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 button:hover {
-    background-color: #005bb5;
+    background-color: rgb(214, 163, 96);
     transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #003f87;
+    background-color: #b47235;
     transform: translateY(1px);
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
     .contact-container {
         padding: 30px 20px;
@@ -115,5 +126,3 @@ button:active {
         font-size: 16px;
     }
 }
-
-  
